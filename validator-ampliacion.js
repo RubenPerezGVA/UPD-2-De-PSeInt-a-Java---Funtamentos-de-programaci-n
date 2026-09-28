@@ -13,7 +13,7 @@
   const c = (id, label, test) => ({id,label,test});
   function balanced(s,open,close){let n=0;for(const ch of s){if(ch===open)n++;if(ch===close&&--n<0)return false;}return n===0;}
 
-  const structure = c('structure','Declara una clase con main y mantiene las llaves y paréntesis equilibrados.',a=>/\bclass\s+[A-Za-z_$][\w$]*\b/.test(a.s)&&/\bstatic\b[\s\S]{0,45}\bvoid\s+main\s*\(/.test(a.s)&&balanced(a.s,'{','}')&&balanced(a.s,'(',')'));
+  const structure = c('structure','Tiene un método main (clásico con class y static, o compacto de Java 25/26: void main()) y llaves y paréntesis equilibrados.',a=>(/\bstatic\b[\s\S]{0,45}\bvoid\s+main\s*\(/.test(a.s)||/(?:^|[;{}\s])void\s+main\s*\(\s*(?:String\s*(?:\[\s*\]|\.\.\.)\s*[A-Za-z_$][\w$]*\s*)?\)/.test(a.s))&&balanced(a.s,'{','}')&&balanced(a.s,'(',')'));
   const reads = n => c('reads',`Lee ${n===1?'el dato solicitado':`al menos ${n} datos`} desde teclado.`,a=>a.readCalls>=n);
   // Salida libre: basta con mostrar los resultados, en el orden y formato que se quiera (uno o varios print/println/printf).
   const shows = (n,label) => c('shows',label||'Muestra los resultados pedidos (orden y formato libres).',a=>a.outputs>=1);
@@ -99,7 +99,7 @@
   const e9 = ex(9,'Rotación de tres variables','Pide tres valores A, B y C. Rótalos hacia la izquierda: A recibe el valor de B, B el de C y C el que tenía A. Muestra el resultado de la rotación (si quieres, también los valores originales).','Es el intercambio de dos variables, pero con una más. Con una sola variable auxiliar basta: aux = A; A = B; B = C; C = aux.','05 · Variables',[
     structure,reads(3),
     c('rotate','Realiza la rotación real con una variable auxiliar.',a=>rotateIndex(a)>=0),
-    c('after','Muestra los valores tras la rotación (juntos o por separado).',a=>{const at=rotateIndex(a);return at>=0&&/System\s*\.\s*out/.test(a.s.slice(at));})
+    c('after','Muestra los valores tras la rotación (juntos o por separado).',a=>{const at=rotateIndex(a);return at>=0&&/\b(?:System\s*\.\s*out|IO)\s*\.\s*print/.test(a.s.slice(at));})
   ],'Ejemplo: A = 1, B = 2, C = 3 → A = 2, B = 3, C = 1.','Medio');
 
   const e10 = ex(10,'Noche de pizzas','Pide cuántas pizzas se han pedido, en cuántas porciones se corta cada una y cuántas personas hay. Calcula el total de porciones, cuántas le tocan a cada persona (enteras) y cuántas sobran.','total = pizzas × porciones; porPersona = total / personas; sobran = total % personas. Usa int.','02 · División entera y resto',[

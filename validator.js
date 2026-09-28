@@ -17,11 +17,11 @@
   function balanced(s,open,close){let n=0;for(const ch of s){if(ch===open)n++;if(ch===close&&--n<0)return false;}return n===0;}
   function assessCode(source){
     const s=sanitize(source), matches=rx=>(s.match(rx)||[]).length;
-    const rawOutputs=[...String(source||'').matchAll(/System\s*\.\s*out\s*\.\s*(?:println|print|printf|format)\s*\(([\s\S]*?)\)\s*;/g)].map(m=>m[1]);
-    const outputs=matches(/\bSystem\s*\.\s*out\s*\.\s*(?:println|print|printf|format)\s*\(/g);
-    const readCalls=matches(/\b(?:next(?:Int|Double|Float|Long|Short|Byte|Line)?|readLine|readInt|readDouble|readFloat|read)\s*\(/g);
+    const rawOutputs=[...String(source||'').matchAll(/(?:System\s*\.\s*out|IO)\s*\.\s*(?:println|print|printf|format)\s*\(([\s\S]*?)\)\s*;/g)].map(m=>m[1]);
+    const outputs=matches(/\b(?:System\s*\.\s*out|IO)\s*\.\s*(?:println|print|printf|format)\s*\(/g);
+    const readCalls=matches(/\b(?:next(?:Int|Double|Float|Long|Short|Byte|Line)?|readLine|readln|readInt|readDouble|readFloat|read)\s*\(/g);
     const readTargets=[];
-    const ar=/\b([A-Za-z_$][\w$]*)\s*=\s*(?:(?:Integer|Double|Float|Long|Short|Byte)\s*\.\s*parse\w+\s*\(\s*)?(?:(?:[A-Za-z_$][\w$]*\s*\.\s*)?)(?:next(?:Int|Double|Float|Long|Short|Byte|Line)?|readLine)\s*\(/g;
+    const ar=/\b([A-Za-z_$][\w$]*)\s*=\s*(?:(?:Integer|Double|Float|Long|Short|Byte)\s*\.\s*parse\w+\s*\(\s*)?(?:(?:[A-Za-z_$][\w$]*\s*\.\s*)?)(?:next(?:Int|Double|Float|Long|Short|Byte|Line)?|readLine|readln)\s*\(/g;
     for(const m of s.matchAll(ar)) readTargets.push(m[1]);
     const assignments=[];
     const assignRx=/\b(?:(?:final\s+)?(?:int|long|short|byte|float|double|String|var)\s+)?([A-Za-z_$][\w$]*)\s*=(?!=)\s*([^;]+);/g;
@@ -39,15 +39,15 @@
     const opCount=key=>(calcAndOutputs.match(ops[key])||[]).length;
     const numbers=[...s.matchAll(/\b\d+(?:\.\d+)?\b/g)].map(m=>Number(m[0]));
     const hasNum=n=>numbers.some(x=>Math.abs(x-n)<1e-5);
-    const printValue=outputs>0 && /\bSystem\s*\.\s*out\s*\.\s*(?:print|println|printf|format)\s*\(\s*(?!\s*\))/m.test(s);
+    const printValue=outputs>0 && /\b(?:System\s*\.\s*out|IO)\s*\.\s*(?:print|println|printf|format)\s*\(\s*(?!\s*\))/m.test(s);
     return {source:String(source||''),s,outputs,rawOutputs,readCalls,readTargets,assignments,mathAssignments,calc,opCount,hasNum,numbers,printValue};
   }
-  const structure = c('structure','Declara una clase con main y mantiene las llaves y paréntesis equilibrados.',a=>/\bclass\s+[A-Za-z_$][\w$]*\b/.test(a.s)&&/\bstatic\b[\s\S]{0,45}\bvoid\s+main\s*\(/.test(a.s)&&balanced(a.s,'{','}')&&balanced(a.s,'(',')'));
+  const structure = c('structure','Tiene un método main (clásico con class y static, o compacto de Java 25/26: void main()) y llaves y paréntesis equilibrados.',a=>(/\bstatic\b[\s\S]{0,45}\bvoid\s+main\s*\(/.test(a.s)||/(?:^|[;{}\s])void\s+main\s*\(\s*(?:String\s*(?:\[\s*\]|\.\.\.)\s*[A-Za-z_$][\w$]*\s*)?\)/.test(a.s))&&balanced(a.s,'{','}')&&balanced(a.s,'(',')'));
   const reads = n => c('reads',`Lee ${n===1?'el dato solicitado':`al menos ${n} datos`} desde teclado.`,a=>a.readCalls>=n);
   const shows = n => c('shows',n===1?'Muestra el resultado mediante System.out.':`Incluye la salida de los resultados (orden y formato libres).`,a=>a.outputs>=1);
   const op = (name,label) => c('op-'+name,label,a=>a.opCount(name)>0);
   const outputMultiple = (n) => c('shows',`Muestra los ${n} resultados, en líneas distintas o en una salida compuesta.`,a=>a.outputs>=1);
-  const numericMath = c('math','Incluye una operación aritmética con los datos introducidos.',a=>a.mathAssignments.length>0 || /System\s*\.\s*out\s*\.\s*(?:print|println)\s*\([^;]*\w+\s*[+*\/%-]\s*\w+/m.test(a.s));
+  const numericMath = c('math','Incluye una operación aritmética con los datos introducidos.',a=>a.mathAssignments.length>0 || /(?:System\s*\.\s*out|IO)\s*\.\s*(?:print|println)\s*\([^;]*\w+\s*[+*\/%-]\s*\w+/m.test(a.s));
   const PI = a=>/\bMath\s*\.\s*PI\b/.test(a.s)||a.numbers.some(x=>x>=3.14&&x<=3.142);
   function swapIndex(a){
     const list=a.assignments;
@@ -112,7 +112,7 @@
     c('joint-area','Calcula el área del conjunto de las dos piscinas.',a=>a.opCount('mul')>=5),
     c('joint-volume','Calcula el volumen total del conjunto.',a=>a.opCount('add')>=2),
     c('swap','Intercambia efectivamente las profundidades.',a=>swapIndex(a)>=0),
-    c('recalc','Después del intercambio, vuelve a calcular y mostrar los dos volúmenes.',a=>{const at=swapIndex(a);if(at<0)return false;const tail=a.s.slice(at);return (tail.match(/\*/g)||[]).length>=2&&(tail.match(/System\s*\.\s*out\s*\.\s*(?:print|println|printf|format)\s*\(/g)||[]).length>=1}),
+    c('recalc','Después del intercambio, vuelve a calcular y mostrar los dos volúmenes.',a=>{const at=swapIndex(a);if(at<0)return false;const tail=a.s.slice(at);return (tail.match(/\*/g)||[]).length>=2&&(tail.match(/(?:System\s*\.\s*out|IO)\s*\.\s*(?:print|println|printf|format)\s*\(/g)||[]).length>=1}),
     c('shows','Muestra las áreas, volúmenes y medidas solicitadas.',a=>a.outputs>=1)
   ],'Resultados con las medidas originales (en cm): áreas 45 000 y 24 000 cm²; volúmenes 900 000 y 840 000 cm³; ancho conjunto 230 cm, largo 300 cm, área conjunta 69 000 cm², volumen total 1 740 000 cm³. Tras intercambiar las profundidades: 1 575 000 y 480 000 cm³.','Reto');
   const exercises=[one,two,three,four,five,six,seven,eight,nine,ten,eleven];

@@ -24,3 +24,19 @@ assert.ok(!validate(9,wrap('int a=in.nextInt(),b=in.nextInt(),c=in.nextInt(); Sy
 // Pseudocódigo en comentarios no cuenta.
 assert.ok(!validate(10,wrap('// int t=p*q; int x=t/n; int y=t%n;\n int p=in.nextInt(); System.out.println(p);')).complete);
 console.log('✓ Ampliación: 12 soluciones completas y 3 casos negativos correctos.');
+
+// --- Java 25/26: archivo compacto (void main sin clase) e IO.println / IO.readln ---
+const P1=require('../validator.js');
+const j25=s=>`void main() {\n${s}\n}`;
+const modern=[
+ [P1,2,j25('int a = Integer.parseInt(IO.readln("Primer número: "));\nint b = Integer.parseInt(IO.readln("Segundo: "));\nIO.println("Suma: " + (a + b));')],
+ [P1,6,j25('var x = Integer.parseInt(IO.readln());\nvar y = Integer.parseInt(IO.readln());\nvar aux = x; x = y; y = aux;\nIO.println("A=" + x + " B=" + y);')],
+ [P1,10,j25('double euros = Double.parseDouble(IO.readln("Euros: "));\nIO.println(euros * 166.386);')],
+ [require('../validator-ampliacion.js'),2,j25('int total = Integer.parseInt(IO.readln("Segundos: "));\nint h = total / 3600; int m = total % 3600 / 60; int s = total % 60;\nIO.println(h + "h " + m + "min " + s + "s");')],
+ [require('../validator-ampliacion.js'),9,j25('int a = Integer.parseInt(IO.readln()), b = Integer.parseInt(IO.readln()), c = Integer.parseInt(IO.readln());\nint aux = a; a = b; b = c; c = aux;\nIO.println(a + " " + b + " " + c);')],
+ [require('../validator-ampliacion.js'),12,j25('double x1=Double.parseDouble(IO.readln()), y1=Double.parseDouble(IO.readln()), x2=Double.parseDouble(IO.readln()), y2=Double.parseDouble(IO.readln());\ndouble dx = x2 - x1; double dy = y2 - y1;\nIO.println(Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2)) + " (" + (x1+x2)/2 + ", " + (y1+y2)/2 + ") " + dy/dx);')],
+ [P1,4,'public class Rect { public static void main(String[] args) { var t = new java.util.Scanner(System.in); double b = t.nextDouble(), h = t.nextDouble(); System.out.println(b*h); } }'],
+];
+for(const [V,id,src] of modern){const r=V.validate(id,src);assert.ok(r.complete,`Java 25 · ejercicio ${id}: faltan ${r.results.filter(x=>!x.pass).map(x=>x.id).join(', ')}`);}
+assert.ok(!P1.validate(2,j25('int a = 3;')).complete);
+console.log('✓ Java 25/26: archivos compactos, void main() e IO.readln/IO.println aceptados.');

@@ -21,7 +21,7 @@ Web estática basada en la dinámica del proyecto `pseint-1daw`, adaptada a Java
 
 ## Qué valida y qué no
 
-- Acepta variables, nombres de clase y mensajes distintos, `Scanner` y `BufferedReader` para entradas; permite sumar o multiplicar en asignaciones o directamente en salidas; ofrece un resultado **parcial** por criterio sin exigir el mismo código que una solución modelo.
+- Acepta variables, nombres de clase y mensajes distintos, `Scanner` y `BufferedReader` para entradas; permite sumar o multiplicar en asignaciones o directamente en salidas; admite Java clásico y el formato compacto de **Java 25 y 26** (`void main()` sin clase, `IO.println`/`IO.print` e `IO.readln`, `var`); la salida es libre: basta con al menos un `System.out` (varios `println`, uno solo con todo junto o `printf`, en cualquier orden); ofrece un resultado **parcial** por criterio sin exigir el mismo código que una solución modelo.
 - La comprobación no compila Java, no ejecuta los programas ni verifica su resultado con casos de prueba. **Puede dar falsos positivos o falsos negativos** ante código semánticamente erróneo o soluciones alternativas. El docente puede revisar el archivo `.java` en IntelliJ y comprobar ejecución y resultados. El justificante solo refleja el análisis local en el instante de su generación y no incluye autenticación, firma ni validación remota.
 - Al editar un ejercicio se invalida su resultado anterior; al generar un justificante se recalculan todos los criterios con el código que esté guardado. Los datos no salen del navegador ni se sincronizan entre dispositivos.
 - Se puede generar un justificante parcial o completo; únicamente muestra «Todos los ejercicios validados» cuando se han superado los 11 mediante las reglas heurísticas.
