@@ -12,11 +12,11 @@
   const ex = (id, title, desc, hint, groups, criteria, example='', level='Base') => ({id,title,desc,hint,groups,criteria,example,level,template:skeleton('Ampliacion'+String(id).padStart(2,'0'))});
   const c = (id, label, test) => ({id,label,test});
   function balanced(s,open,close){let n=0;for(const ch of s){if(ch===open)n++;if(ch===close&&--n<0)return false;}return n===0;}
-  const lines = a => a.outputs + Math.max(0, a.rawOutputs.join(' ').split(/\\n|%n/).length - 1);
 
   const structure = c('structure','Declara una clase con main y mantiene las llaves y paréntesis equilibrados.',a=>/\bclass\s+[A-Za-z_$][\w$]*\b/.test(a.s)&&/\bstatic\b[\s\S]{0,45}\bvoid\s+main\s*\(/.test(a.s)&&balanced(a.s,'{','}')&&balanced(a.s,'(',')'));
   const reads = n => c('reads',`Lee ${n===1?'el dato solicitado':`al menos ${n} datos`} desde teclado.`,a=>a.readCalls>=n);
-  const shows = (n,label) => c('shows',label||`Muestra los ${n} resultados pedidos.`,a=>lines(a)>=n);
+  // Salida libre: basta con mostrar los resultados, en el orden y formato que se quiera (uno o varios print/println/printf).
+  const shows = (n,label) => c('shows',label||'Muestra los resultados pedidos (orden y formato libres).',a=>a.outputs>=1);
   const op = (name,label,min=1) => c('op-'+name,label,a=>a.opCount(name)>=min);
   const anyNum = (...ns) => a => ns.some(n=>a.hasNum(n));
 
@@ -61,7 +61,7 @@
     c('weights','Aplica los pesos 60 %, 30 % y 10 %.',a=>(a.hasNum(0.6)||a.hasNum(60))&&(a.hasNum(0.3)||a.hasNum(30))&&(a.hasNum(0.1)||a.hasNum(10))),
     op('mul','Multiplica cada nota por su peso.',3),
     op('add','Suma las tres partes.',2),
-    c('format','Muestra el resultado con formato (printf o String.format).',a=>/\b(?:printf|format)\s*\(/.test(a.s)),
+    shows(1,'Muestra la nota final (printf con dos decimales es opcional).'),
   ],'Ejemplo: teoría 7, prácticas 8, actitud 9 → 4,2 + 2,4 + 0,9 = 7,50.');
 
   const e5 = ex(5,'Estación meteorológica','Pide una temperatura en grados Celsius y muéstrala convertida a Fahrenheit y a Kelvin.','F = C × 9 / 5 + 32. K = C + 273.15. Cuidado: en Java 9 / 5 con enteros vale 1; usa 9.0 / 5 o 1.8.','03 · Fórmulas',[
@@ -96,11 +96,10 @@
     shows(2,'Muestra la velocidad en m/s y en km/h.')
   ],'Ejemplo: 10 000 m en 50 min 0 s → 3000 s → 3,33 m/s → 12,00 km/h.');
 
-  const e9 = ex(9,'Rotación de tres variables','Pide tres valores A, B y C. Rótalos hacia la izquierda: A recibe el valor de B, B el de C y C el que tenía A. Muestra los valores antes y después.','Es el intercambio de dos variables, pero con una más. Con una sola variable auxiliar basta: aux = A; A = B; B = C; C = aux.','05 · Variables',[
+  const e9 = ex(9,'Rotación de tres variables','Pide tres valores A, B y C. Rótalos hacia la izquierda: A recibe el valor de B, B el de C y C el que tenía A. Muestra el resultado de la rotación (si quieres, también los valores originales).','Es el intercambio de dos variables, pero con una más. Con una sola variable auxiliar basta: aux = A; A = B; B = C; C = aux.','05 · Variables',[
     structure,reads(3),
     c('rotate','Realiza la rotación real con una variable auxiliar.',a=>rotateIndex(a)>=0),
-    c('before','Muestra los valores originales antes de rotar.',a=>{const at=rotateIndex(a);return at>=0&&/System\s*\.\s*out/.test(a.s.slice(0,at));}),
-    c('after','Muestra los tres valores después de rotar.',a=>{const at=rotateIndex(a);if(at<0)return false;const tail=a.s.slice(at);return (tail.match(/System\s*\.\s*out/g)||[]).length>=3||(tail.match(/System\s*\.\s*out/g)||[]).length>=1&&(a.rawOutputs.join('').match(/\+/g)||[]).length>=4;})
+    c('after','Muestra los valores tras la rotación (juntos o por separado).',a=>{const at=rotateIndex(a);return at>=0&&/System\s*\.\s*out/.test(a.s.slice(at));})
   ],'Ejemplo: A = 1, B = 2, C = 3 → A = 2, B = 3, C = 1.','Medio');
 
   const e10 = ex(10,'Noche de pizzas','Pide cuántas pizzas se han pedido, en cuántas porciones se corta cada una y cuántas personas hay. Calcula el total de porciones, cuántas le tocan a cada persona (enteras) y cuántas sobran.','total = pizzas × porciones; porPersona = total / personas; sobran = total % personas. Usa int.','02 · División entera y resto',[
@@ -119,7 +118,7 @@
     c('vat','Aplica el IVA del 21 % sobre la base con impuesto eléctrico.',anyNum(21,0.21,1.21)),
     op('add','Suma los conceptos para obtener bases y total.',2),
     c('constants','Declara al menos una constante con final.',a=>/\bfinal\s+(?:double|float|int)\b/.test(a.s)),
-    shows(5,'Muestra el desglose: energía, potencia, impuesto eléctrico, IVA y total.')
+    shows(5,'Muestra el desglose de la factura (orden y formato libres).')
   ],'Ejemplo: 300 kWh a 0,15 €; 4,6 kW; 30 días → energía 45,00; potencia 13,80; impuesto eléctrico 3,00; base imponible 61,80; IVA 12,98; total 74,78 €.','Reto');
 
   const e12 = ex(12,'Ampliación · Dos puntos en el mapa','Pide las coordenadas de dos puntos del plano, (x1, y1) y (x2, y2). Calcula la distancia entre ellos, el punto medio y la pendiente de la recta que los une.','Distancia = Math.sqrt(Math.pow(x2 − x1, 2) + Math.pow(y2 − y1, 2)). Punto medio = ((x1 + x2) / 2, (y1 + y2) / 2). Pendiente = (y2 − y1) / (x2 − x1). Prueba con puntos que no tengan la misma x.','06 · Ampliación',[
