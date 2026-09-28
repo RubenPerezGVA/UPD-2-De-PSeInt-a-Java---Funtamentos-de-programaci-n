@@ -39,3 +39,11 @@ node tests/validator.test.js
 ```
 
 Se comprueban 11 soluciones con identificadores libres, un caso de validación parcial, ignorar comentarios/literales que contienen pseudocódigo aparente y detectar la ausencia de intercambio real en el ejercicio 6.
+
+## Ampliación (`ampliacion.html`)
+
+Segunda página con **12 retos nuevos** del mismo nivel (solo sentencias simples, sin `if` ni bucles) y la misma dinámica: pistas, validación parcial por criterios, justificante y exportación. Temas: división entera y resto (tiempo, cajero, cifras, pizzas), fórmulas (nota ponderada, temperaturas), aplicaciones (viaje, carrera), rotación de tres variables, constantes con `final` y la clase `Math` (factura de la luz y distancia entre dos puntos).
+
+- `validator-ampliacion.js`: enunciados y criterios; reutiliza el analizador de `validator.js` (se carga antes).
+- `app.js` lee la configuración de cada página (clave de almacenamiento, título de la actividad y nombres de archivo), así que el progreso de ambas prácticas se guarda por separado.
+- Pruebas: `node tests/ampliacion.test.js`.

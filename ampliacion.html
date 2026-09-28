@@ -4,55 +4,54 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111d34">
-  <meta name="description" content="Práctica de Java: sentencias simples, autovalidación formativa y justificante imprimible.">
-  <title>Java paso a paso · Programación · Rubén Pérez Ibáñez</title>
+  <meta name="description" content="Ampliación de Java: 12 retos de sentencias simples con autovalidación formativa y justificante imprimible.">
+  <title>Java paso a paso · Ampliación · Rubén Pérez Ibáñez</title>
   <link rel="stylesheet" href="styles.css">
   <script defer src="validator.js"></script>
+  <script defer src="validator-ampliacion.js"></script>
   <script defer src="app.js"></script>
 </head>
 <body>
   <header class="topbar">
     <a href="#inicio" class="brand"><span class="brand-mark">{ }</span><span><strong>Programación · Java</strong><small>IES Álvaro Falomir · Curso 2026/27</small></span></a>
-    <nav class="toplinks" aria-label="Navegación principal"><a href="#ejercicios">Ejercicios</a><a href="#guia">Guía rápida</a><a href="#entrega">Justificante</a><a href="ampliacion.html">Ampliación →</a><a href="material/Teoria_Java_elementos_basicos.pdf" target="_blank" rel="noopener">Teoría PDF ↗</a></nav>
+    <nav class="toplinks" aria-label="Navegación principal"><a href="index.html">← Práctica 1</a><a href="#ejercicios">Ejercicios</a><a href="#guia">Guía rápida</a><a href="#entrega">Justificante</a><a href="material/Teoria_Java_elementos_basicos.pdf" target="_blank" rel="noopener">Teoría PDF ↗</a></nav>
   </header>
 
   <main id="inicio" class="shell">
     <aside class="sidebar">
       <section class="panel student-panel"><label for="studentName">Nombre y apellidos</label><input type="text" id="studentName" maxlength="120" placeholder="Escribe tu nombre completo" autocomplete="name"><p class="muted">Aparecerán en el justificante de la práctica.</p></section>
-      <section class="panel progress-panel"><div class="inline"><span>Ejercicios superados</span><strong id="progressTotal">0 / 11</strong></div><div class="track"><div id="progressBar"></div></div><p class="muted" id="progressDetail">0 criterios validados</p></section>
+      <section class="panel progress-panel"><div class="inline"><span>Ejercicios superados</span><strong id="progressTotal">0 / 12</strong></div><div class="track"><div id="progressBar"></div></div><p class="muted" id="progressDetail">0 criterios validados</p></section>
       <nav id="exerciseNav" class="exercise-nav" aria-label="Seleccionar ejercicio"></nav>
       <section class="panel side-info"><strong>Modalidad de trabajo</strong><p>Resuelve cada ejercicio en <b>IntelliJ IDEA</b> y pega tu código aquí para recibir orientaciones. Los resultados se conservan en este navegador.</p><button id="resetBtn" class="btn subtle danger" type="button">Borrar mi progreso</button></section>
     </aside>
 
     <div class="workspace">
-      <section class="hero"><div><span class="eyebrow">De PSeInt a Java</span><h1>Java paso a paso<span class="dot">.</span></h1><p>11 ejercicios de sentencias simples con comprobaciones parciales, comentarios orientativos y un justificante imprimible de tu progreso.</p><div class="hero-actions"><a class="btn light" href="#ejercicios">Empezar práctica →</a><a class="btn outline-light" href="material/Ejercicios_Java_sentencias_simples.pdf" target="_blank" rel="noopener">Ver enunciados originales ↗</a></div></div><pre aria-hidden="true"><span>public class</span> Inicio {
-  <span>public static void</span> main(String[] args) {
-    System.out.println(<em>"Hola Java"</em>);
-  }
-}</pre></section>
+      <section class="hero"><div><span class="eyebrow">De PSeInt a Java · Ampliación</span><h1>Más Java, más retos<span class="dot">.</span></h1><p>12 problemas nuevos del mundo real con las mismas herramientas: variables, entrada, operadores y salida. Aquí descubrirás todo lo que dan de sí la división entera, el resto <code>%</code>, las constantes y <code>Math</code>.</p><div class="hero-actions"><a class="btn light" href="#ejercicios">Empezar práctica →</a><a class="btn outline-light" href="index.html">Volver a la práctica 1</a></div></div><pre aria-hidden="true"><span>int</span> total = 3725;
+<span>int</span> h = total / 3600;
+<span>int</span> m = total % 3600 / 60;
+<span>int</span> s = total % 60;
+System.out.printf(<em>"%dh %dm %ds"</em>, h, m, s);</pre></section>
       <section class="notice" role="note"><strong>Qué comprueba esta web</strong><p>Analiza patrones del código fuente para dar feedback formativo: no compila ni ejecuta Java. Puedes elegir libremente los nombres de tus variables y el formato de los mensajes. La validación automática no garantiza que el programa funcione; ejecútalo y compruébalo en IntelliJ.</p></section>
-      <section id="ejercicios" class="exercise-area"><div class="section-head"><div><span class="eyebrow dark">01 / PRÁCTICA</span><h2 id="exerciseHeading">Sentencias simples</h2></div><span id="levelBadge" class="badge">Base</span></div>
-        <div class="exercise-card"><div class="number-row"><span id="exerciseNumber">Ejercicio 01 · 11</span><span id="exerciseState" class="pill">Pendiente</span></div><h3 id="exerciseTitle"></h3><p id="exerciseDesc" class="desc"></p><div id="exerciseData" class="data-box" hidden></div><div class="hint"><span>PISTA</span><p id="exerciseHint"></p></div>
+      <section id="ejercicios" class="exercise-area"><div class="section-head"><div><span class="eyebrow dark">01 / PRÁCTICA</span><h2 id="exerciseHeading">Ampliación · Sentencias simples</h2></div><span id="levelBadge" class="badge">Base</span></div>
+        <div class="exercise-card"><div class="number-row"><span id="exerciseNumber">Ejercicio 01 · 12</span><span id="exerciseState" class="pill">Pendiente</span></div><h3 id="exerciseTitle"></h3><p id="exerciseDesc" class="desc"></p><div id="exerciseData" class="data-box" hidden></div><div class="hint"><span>PISTA</span><p id="exerciseHint"></p></div>
           <div class="editor-head"><label for="codeEditor">Tu programa Java</label><div class="editor-actions"><button id="copyBtn" class="text-btn" type="button">Copiar código</button><button id="templateBtn" class="text-btn" type="button">Recuperar plantilla</button></div></div>
           <textarea id="codeEditor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="editorHelp"></textarea><p id="editorHelp" class="muted editor-help">Puedes cambiar el nombre de la clase y de todas las variables. La comprobación se basa en lo que realiza el código, no en que utilices identificadores concretos.</p>
           <div class="editor-bottom"><span id="saveState" role="status">Guardado local automático</span><button id="validateBtn" class="btn primary" type="button">Validar este ejercicio →</button></div>
           <div id="feedback" class="feedback" aria-live="polite" hidden></div>
         </div>
-        <div class="exercise-pagination"><button id="prevBtn" class="btn outline" type="button">← Anterior</button><span id="pagerText">1 de 11</span><button id="nextBtn" class="btn outline" type="button">Siguiente →</button></div>
+        <div class="exercise-pagination"><button id="prevBtn" class="btn outline" type="button">← Anterior</button><span id="pagerText">1 de 12</span><button id="nextBtn" class="btn outline" type="button">Siguiente →</button></div>
       </section>
 
-      <section id="guia" class="section-panel guide"><div class="section-head"><div><span class="eyebrow dark">02 / APOYO</span><h2>Guía rápida de Java</h2></div><a href="material/Teoria_Java_elementos_basicos.pdf" target="_blank" rel="noopener" class="small-link">Teoría completa en PDF ↗</a></div><div class="guide-grid"><article><b>01 · Estructura</b><pre>public class Main {
-  public static void main(String[] args) {
-    // Instrucciones
-  }
-}</pre><p>El punto de entrada habitual es <code>main</code>. Sustituye <code>Main</code> por el nombre de tu archivo si corresponde.</p></article><article><b>02 · Variables y operadores</b><pre>int edad = 18;
-double precio = 12.5;
-String nombre = "Ana";
-double total = precio * 1.21;</pre><p>Tipos básicos, asignación y operaciones <code>+ − * / %</code>.</p></article><article><b>03 · Leer con Scanner</b><pre>import java.util.Scanner;
-Scanner teclado = new Scanner(System.in);
-int unidades = teclado.nextInt();
-double precio = teclado.nextDouble();</pre><p>Para nombres completos, <code>nextLine()</code>. También se admite <code>BufferedReader</code>.</p></article><article><b>04 · Mostrar resultados</b><pre>System.out.println("Total: " + total);
-System.out.printf("%.2f", total);</pre><p>Escribe mensajes claros, comprueba las operaciones con datos distintos y evita dividir entre cero.</p></article></div><p class="guide-foot">La teoría adjunta incluye también condicionales y estructuras de repetición. Esta primera práctica se centra en las 11 actividades de sentencias simples.</p></section>
+      <section id="guia" class="section-panel guide"><div class="section-head"><div><span class="eyebrow dark">02 / APOYO</span><h2>Guía rápida de Java</h2></div><a href="material/Teoria_Java_elementos_basicos.pdf" target="_blank" rel="noopener" class="small-link">Teoría completa en PDF ↗</a></div><div class="guide-grid"><article><b>01 · División entera y resto</b><pre>int total = 125;
+int grupos = total / 50;   // 2
+int sobran = total % 50;   // 25
+int unidades = 472 % 10;   // 2</pre><p>Con dos <code>int</code>, <code>/</code> descarta los decimales y <code>%</code> da el resto. Es la clave para tiempos, cambio y cifras.</p></article><article><b>02 · Constantes</b><pre>final double IVA = 0.21;
+final int SEG_HORA = 3600;
+double iva = precio * IVA;</pre><p>Con <code>final</code> el valor no puede cambiar. Por convenio, se escriben en MAYÚSCULAS.</p></article><article><b>03 · La clase Math</b><pre>double r = Math.sqrt(25);      // 5.0
+double c = Math.pow(3, 2);     // 9.0
+double p = Math.PI;</pre><p>Raíces, potencias y π sin programarlos tú. Devuelven <code>double</code>.</p></article><article><b>04 · Cuidado con los tipos</b><pre>double f1 = 9 / 5;       // 1.0 ¡ojo!
+double f2 = 9.0 / 5;     // 1.8
+System.out.printf("%.2f%n", f2);</pre><p>Si los dos operandos son enteros, la división es entera. Usa <code>printf</code> para fijar los decimales.</p></article></div><p class="guide-foot">Todos los retos se resuelven sin <code>if</code> ni bucles: solo con sentencias simples. Si ya conoces las condicionales, resiste la tentación.</p></section>
       <section id="entrega" class="finish section-panel"><div><span class="eyebrow dark">03 / ENTREGA</span><h2>Justificante de validación</h2><p>Genera un informe con tu nombre, fecha, criterios superados y situación de cada ejercicio. Puedes imprimirlo o guardarlo en PDF desde el navegador.</p><p id="finishStatus" class="muted"></p></div><div class="finish-actions"><button class="btn primary" type="button" id="receiptBtn">Generar justificante →</button><button class="btn outline" type="button" id="exportBtn">Exportar código (.json)</button></div><p class="legal">El justificante es una declaración generada localmente: no equivale a una entrega en Aules, a una firma digital ni a una calificación oficial. Conserva los archivos <code>.java</code> de tus ejercicios.</p></section>
       <footer class="footer">Material didáctico · Rubén Pérez Ibáñez · IES Álvaro Falomir · 2026/27</footer>
     </div>
