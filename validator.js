@@ -5,8 +5,26 @@
   root.JavaPractice = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
-  const skeleton = (name, inside = '// Escribe aquí las instrucciones de tu programa') => `import java.util.Scanner;\n\npublic class ${name} {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        ${inside}\n    }\n}`;
-  const ex = (id, title, desc, hint, groups, criteria, example='', level='Base') => ({id,title,desc,hint,groups,criteria,example,level,template:skeleton('Ejercicio'+id)});
+  /* Pistas en la plantilla: comentarios paso a paso con huecos (___) que el alumno completa. No son la solución. */
+  const HINTS = {
+    1:['PISTA 1 · Lee el nombre (texto) con nextLine():','String nombre = teclado.nextLine();','','PISTA 2 · Lee la edad (número entero):','int edad = ___;','','PISTA 3 · Muestra el saludo uniendo textos y variables con +:','System.out.println("Hola " + nombre + ___);'],
+    2:['PISTA 1 · Lee los dos números:','double a = teclado.nextDouble();','double b = ___;','','PISTA 2 · Súmalos (en una variable o directamente al mostrar):','double suma = ___;','','PISTA 3 · Muestra el resultado.'],
+    3:['PISTA 1 · Lee dos números enteros (int).','','PISTA 2 · Calcula las cinco operaciones:','int suma = a + b;','int resta = ___;','int producto = ___;','double division = (double) a / b;   // prueba también a / b con int','int resto = a ___ b;','','PISTA 3 · Muestra los cinco resultados. ¡Que b no sea 0!'],
+    4:['PISTA 1 · Lee la base y la altura (double).','','PISTA 2 · Área = base × altura:','double area = ___;','','PISTA 3 · Muestra el área.'],
+    5:['PISTA 1 · Lee el radio (double).','','PISTA 2 · Área = π × radio²:','double area = Math.PI * ___;   // radio * radio o Math.pow(radio, 2)','','PISTA 3 · Perímetro = 2 × π × radio:','double perimetro = ___;','','PISTA 4 · Muestra área y perímetro.'],
+    6:['PISTA 1 · Lee A y B.','','PISTA 2 · Guarda A en una auxiliar antes de perderlo:','int aux = a;','a = ___;','b = ___;','','PISTA 3 · Muestra los nuevos valores de A y B.'],
+    7:['PISTA 1 · Lee unidades y precio de cada refresco:','int unidadesCola = teclado.nextInt();','double precioCola = teclado.nextDouble();','// ...lo mismo para naranja y limón','','PISTA 2 · Importe de cada producto = unidades × precio:','double totalCola = ___;','','PISTA 3 · Total general = suma de los tres importes:','double totalGeneral = ___;','','PISTA 4 · Muestra el informe: cola, naranja, limón y total.'],
+    8:['PISTA 1 · Lee el precio (double).','','PISTA 2 · IVA del 21 %:','double iva = precio * ___;','','PISTA 3 · Precio final:','double total = ___;','','PISTA 4 · Muestra el IVA y el total.'],
+    9:['PISTA 1 · Lee el precio y el porcentaje de IVA.','','PISTA 2 · Pasa el porcentaje a tanto por uno:','double iva = precio * porcentaje / ___;','','PISTA 3 · Precio final:','double total = ___;','','PISTA 4 · Muestra el impuesto y el total.'],
+    10:['PISTA 1 · Guarda el cambio en una constante:','final double PESETAS_POR_EURO = ___;','','PISTA 2 · Lee los euros (double).','','PISTA 3 · Convierte:','double pesetas = ___;','','PISTA 4 · Muestra el resultado.'],
+    11:['PISTA 1 · Medidas de las piscinas (en cm):','double largo1 = 300, ancho1 = 150, prof1 = 20;','double largo2 = ___, ancho2 = ___, prof2 = ___;','','PISTA 2 · Áreas y volúmenes de cada piscina:','double area1 = largo1 * ancho1;','double vol1 = area1 * ___;','// ...lo mismo para la piscina 2','','PISTA 3 · Conjunto lado a lado:','double anchoTotal = ___;   // se suman los anchos','double areaTotal = ___;','double volTotal = ___;','','PISTA 4 · Muestra todo lo anterior.','','PISTA 5 · Intercambia las profundidades con una auxiliar,','// recalcula los dos volúmenes y muéstralos de nuevo.']
+  };
+  const skeleton = (name, id) => {
+    const body = (HINTS[id] || ['Escribe aquí las instrucciones de tu programa'])
+      .map(l => l === '' ? '' : l.startsWith('// ') ? '        ' + l : '        // ' + l).join('\n');
+    return `import java.util.Scanner;\n\npublic class ${name} {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n\n${body}\n    }\n}`;
+  };
+  const ex = (id, title, desc, hint, groups, criteria, example='', level='Base') => ({id,title,desc,hint,groups,criteria,example,level,template:skeleton('Ejercicio'+id, id)});
   const c = (id, label, test) => ({id,label,test});
 
   function sanitize(source){
