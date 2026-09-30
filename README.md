@@ -47,3 +47,8 @@ Segunda página con **12 retos nuevos** del mismo nivel (solo sentencias simples
 - `validator-ampliacion.js`: enunciados y criterios; reutiliza el analizador de `validator.js` (se carga antes).
 - `app.js` lee la configuración de cada página (clave de almacenamiento, título de la actividad y nombres de archivo), así que el progreso de ambas prácticas se guarda por separado.
 - Pruebas: `node tests/ampliacion.test.js`.
+
+## Pistas en el código y restos sin `%`
+
+- Cada ejercicio (práctica 1 y ampliación) trae en su plantilla pistas paso a paso como comentarios con huecos `___`. Al ser comentarios, el validador las ignora: la plantilla sin completar no supera ningún ejercicio. Quien ya tenga código guardado las verá con «Recuperar plantilla».
+- En la ampliación, el tiempo (h/min/s) y el cajero admiten calcular lo que sobra con `%` o dividiendo y restando (`resto = total - horas * 3600`, `q -= b50 * 50`).
