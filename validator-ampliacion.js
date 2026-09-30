@@ -8,8 +8,27 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (base) {
   'use strict';
   const {assessCode, sanitize, swapIndex} = base;
-  const skeleton = (name) => `import java.util.Scanner;\n\npublic class ${name} {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        // Escribe aquí las instrucciones de tu programa\n    }\n}`;
-  const ex = (id, title, desc, hint, groups, criteria, example='', level='Base') => ({id,title,desc,hint,groups,criteria,example,level,template:skeleton('Ampliacion'+String(id).padStart(2,'0'))});
+  /* Pistas en la plantilla: comentarios paso a paso con huecos (___) que el alumno completa. No son la solución. */
+  const HINTS = {
+    1:['PISTA 1 · Precios fijos como constantes:','final double PRECIO_CAFE = 1.30;','final double PRECIO_TOSTADA = ___;','','PISTA 2 · Lee cuántos cafés y tostadas:','int cafes = teclado.nextInt();','int tostadas = ___;','','PISTA 3 · Calcula:','double subtotal = cafes * PRECIO_CAFE + ___;','double propina = subtotal * ___;   // 10 %','double total = ___;','','PISTA 4 · Muestra el ticket (formato libre).'],
+    2:['PISTA 1 · Lee el total de segundos en un int:','int total = teclado.nextInt();','','PISTA 2 · Horas: ¿cuántos segundos tiene una hora?','int horas = total / ___;','','PISTA 3 · Lo que sobra (elige una opción):','  opción A →  int resto = total % 3600;','  opción B →  int resto = total - horas * 3600;','','PISTA 4 · Minutos y segundos a partir del resto:','int minutos = resto / ___;','int segundos = ___;','','PISTA 5 · Muestra h, min y s. Prueba con 3725 → 1 h 2 min 5 s.'],
+    3:['PISTA 1 · Lee la cantidad (int, euros enteros):','int cantidad = teclado.nextInt();','','PISTA 2 · Billetes de 50 y lo que queda por repartir:','int b50 = cantidad / 50;','cantidad = cantidad % 50;          // o: cantidad = cantidad - b50 * 50;','','PISTA 3 · Repite la misma idea con 20, 10, 5 y 2:','int b20 = cantidad / ___;','cantidad = ___;','...','','PISTA 4 · Lo que quede al final son monedas de 1 €.','PISTA 5 · Muestra cuántas piezas hay de cada tipo.'],
+    4:['PISTA 1 · Lee las tres notas (double):','double teoria = teclado.nextDouble();','// practicas, actitud...','','PISTA 2 · Pondera: 60 %, 30 % y 10 %:','double notaFinal = teoria * 0.6 + ___ + ___;','','PISTA 3 · Muestra con dos decimales (opcional):','System.out.printf("Nota final: %.2f%n", notaFinal);'],
+    5:['PISTA 1 · Lee los grados Celsius (double).','','PISTA 2 · Fahrenheit. ¡Ojo! 9 / 5 con int vale 1:','double fahrenheit = celsius * 9.0 / 5 + ___;','','PISTA 3 · Kelvin:','double kelvin = celsius + ___;','','PISTA 4 · Muestra los dos resultados.'],
+    6:['PISTA 1 · Lee un número de 3 cifras (int).','','PISTA 2 · Separa las cifras con / y %:','int centenas = numero / 100;','int decenas  = numero / 10 % ___;','int unidades = numero % ___;','','PISTA 3 · Suma de cifras y número al revés:','int suma = ___;','int alReves = unidades * 100 + ___ + ___;','','PISTA 4 · Muestra la suma y el número invertido. 472 → 13 y 274.'],
+    7:['PISTA 1 · Lee km, litros y precio del litro (double).','','PISTA 2 · Consumo cada 100 km:','double consumo = litros / km * ___;','','PISTA 3 · Coste total y coste por km:','double coste = ___;','double costeKm = coste / ___;','','PISTA 4 · Muestra los tres resultados (printf con 2 decimales queda bien).'],
+    8:['PISTA 1 · Lee metros, minutos y segundos.','','PISTA 2 · Pasa todo el tiempo a segundos:','int tiempo = minutos * ___ + segundos;','','PISTA 3 · Velocidad en m/s y en km/h:','double ms = metros / (double) tiempo;','double kmh = ms * ___;','','PISTA 4 · Muestra las dos velocidades.'],
+    9:['PISTA 1 · Lee A, B y C.','','PISTA 2 · Guarda A antes de perderlo:','int aux = a;','','PISTA 3 · Rota: A ← B, B ← C, C ← el antiguo A:','a = ___;','b = ___;','c = ___;','','PISTA 4 · Muestra los tres valores. 1 2 3 → 2 3 1.'],
+    10:['PISTA 1 · Lee pizzas, porciones por pizza y personas (int).','','PISTA 2 · Total de porciones:','int totalPorciones = ___ * ___;','','PISTA 3 · Reparto con división entera y resto:','int porPersona = totalPorciones / ___;','int sobran = ___;            // con % o restando','','PISTA 4 · Muestra los tres datos.'],
+    11:['PISTA 1 · Constantes de la factura:','final double PRECIO_POTENCIA = 0.10;   // € por kW y día','final double IMP_ELECTRICO = 0.0511;','final double IVA = ___;','','PISTA 2 · Lee kWh, precio del kWh, kW contratados y días.','','PISTA 3 · Calcula paso a paso:','double energia  = kwh * ___;','double potencia = kw * dias * ___;','double base     = energia + potencia;','double impElec  = base * ___;','double imponible = ___;','double iva      = imponible * IVA;','double total    = ___;','','PISTA 4 · Muestra el desglose (orden y formato libres).'],
+    12:['PISTA 1 · Lee x1, y1, x2, y2 (double).','','PISTA 2 · Diferencias:','double dx = x2 - x1;','double dy = ___;','','PISTA 3 · Distancia (Pitágoras):','double distancia = Math.sqrt(Math.pow(dx, 2) + ___);','','PISTA 4 · Punto medio y pendiente:','double medioX = (x1 + x2) / 2;','double medioY = ___;','double pendiente = ___ / ___;','','PISTA 5 · Muestra los resultados. (1,2) y (4,6) → distancia 5.']
+  };
+  const skeleton = (name, id) => {
+    const body = (HINTS[id] || ['Escribe aquí las instrucciones de tu programa'])
+      .map(l => l === '' ? '' : '        // ' + l).join('\n');
+    return `import java.util.Scanner;\n\npublic class ${name} {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n\n${body}\n    }\n}`;
+  };
+  const ex = (id, title, desc, hint, groups, criteria, example='', level='Base') => ({id,title,desc,hint,groups,criteria,example,level,template:skeleton('Ampliacion'+String(id).padStart(2,'0'), id)});
   const c = (id, label, test) => ({id,label,test});
   function balanced(s,open,close){let n=0;for(const ch of s){if(ch===open)n++;if(ch===close&&--n<0)return false;}return n===0;}
 
