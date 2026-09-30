@@ -18,6 +18,8 @@
   // Salida libre: basta con mostrar los resultados, en el orden y formato que se quiera (uno o varios print/println/printf).
   const shows = (n,label) => c('shows',label||'Muestra los resultados pedidos (orden y formato libres).',a=>a.outputs>=1);
   const op = (name,label,min=1) => c('op-'+name,label,a=>a.opCount(name)>=min);
+  // Cuenta los restos: con % o a mano, restando lo ya repartido (total - horas * 3600, q -= b50 * 50…).
+  const rests = a => a.opCount('mod') + (a.s.match(/-=?\s*\(?\s*[\w$.]+\s*\*\s*[\w$.]+/g)||[]).length;
   const anyNum = (...ns) => a => ns.some(n=>a.hasNum(n));
 
   /* Rotación de tres variables: aux = A; A = B; B = C; C = aux (en cualquier orden de nombres). */
@@ -39,20 +41,20 @@
     shows(3,'Muestra subtotal, propina y total.')
   ],'Ejemplo: 3 cafés y 2 tostadas → subtotal 8,10 €; propina 0,81 €; total 8,91 €.');
 
-  const e2 = ex(2,'¿Cuánto dura la película?','Pide una duración en segundos (por ejemplo, la de una película o una partida) y muéstrala en horas, minutos y segundos.','Aquí brillan la división entera (/) y el resto (%) con int: horas = total / 3600; lo que sobra = total % 3600…','02 · División entera y resto',[
+  const e2 = ex(2,'¿Cuánto dura la película?','Pide una duración en segundos (por ejemplo, la de una película o una partida) y muéstrala en horas, minutos y segundos.','Aquí brillan la división entera (/) y el resto (%) con int: horas = total / 3600; lo que sobra = total % 3600… También vale sin %: lo que sobra = total - horas * 3600.','02 · División entera y resto',[
     structure,reads(1),
     c('int','Trabaja con enteros (int o long) para usar la división entera.',a=>/\b(?:int|long)\b/.test(a.s)),
     c('hours','Calcula las horas usando 3600.',a=>a.hasNum(3600)&&a.opCount('div')>=1),
-    c('minutes','Calcula los minutos a partir del resto, usando 60.',a=>a.hasNum(60)&&a.opCount('mod')>=1),
-    c('seconds','Obtiene los segundos sobrantes con el operador %.',a=>a.opCount('mod')>=2||(a.opCount('mod')>=1&&a.opCount('sub')>=1)),
+    c('minutes','Calcula los minutos a partir de lo que sobra de las horas, usando 60 (con % o restando).',a=>a.hasNum(60)&&rests(a)>=1),
+    c('seconds','Obtiene los segundos sobrantes (con % o dividiendo y restando).',a=>rests(a)>=2||(a.opCount('mod')>=1&&a.opCount('sub')>=1)),
     shows(1,'Muestra las horas, minutos y segundos.')
   ],'Ejemplo: 3725 s → 1 h 2 min 5 s. Prueba también con 59, 60 y 7200.','Medio');
 
-  const e3 = ex(3,'El cajero automático','Un cajero entrega billetes de 50, 20, 10 y 5 € y monedas de 2 y 1 €. Pide una cantidad entera de euros y calcula cuántos billetes y monedas de cada tipo entrega, usando siempre los de mayor valor posible.','Sin if ni bucles: billetes50 = cantidad / 50; resto = cantidad % 50; billetes20 = resto / 20; resto = resto % 20… Puedes reutilizar la variable del resto.','02 · División entera y resto',[
+  const e3 = ex(3,'El cajero automático','Un cajero entrega billetes de 50, 20, 10 y 5 € y monedas de 2 y 1 €. Pide una cantidad entera de euros y calcula cuántos billetes y monedas de cada tipo entrega, usando siempre los de mayor valor posible.','Sin if ni bucles: billetes50 = cantidad / 50; resto = cantidad % 50; billetes20 = resto / 20; resto = resto % 20… Puedes reutilizar la variable del resto. Sin %, también vale restar: resto = cantidad - billetes50 * 50.','02 · División entera y resto',[
     structure,reads(1),
     c('values','Trabaja con los valores 50, 20, 10, 5 y 2.',a=>[50,20,10,5,2].every(a.hasNum)),
     op('div','Calcula el número de piezas con división entera.',4),
-    op('mod','Calcula lo que queda por repartir con %.',4),
+    c('rest','Calcula lo que queda por repartir (con % o restando lo ya entregado).',a=>rests(a)>=4),
     shows(6,'Muestra el número de billetes y monedas de cada tipo.')
   ],'Ejemplo: 188 € → 3 × 50, 1 × 20, 1 × 10, 1 × 5, 1 × 2, 1 × 1. Comprueba: 150 + 20 + 10 + 5 + 2 + 1 = 188.','Reto');
 

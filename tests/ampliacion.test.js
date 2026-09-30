@@ -40,3 +40,17 @@ const modern=[
 for(const [V,id,src] of modern){const r=V.validate(id,src);assert.ok(r.complete,`Java 25 · ejercicio ${id}: faltan ${r.results.filter(x=>!x.pass).map(x=>x.id).join(', ')}`);}
 assert.ok(!P1.validate(2,j25('int a = 3;')).complete);
 console.log('✓ Java 25/26: archivos compactos, void main() e IO.readln/IO.println aceptados.');
+
+// --- Sin %: dividiendo y restando ---
+const A=require('../validator-ampliacion.js');
+const sinMod=[
+ [2,wrap('int t=in.nextInt(); int h=t/3600; int r=t-h*3600; int m=r/60; int s=r-m*60; System.out.println(h+" h "+m+" min "+s+" s");')],
+ [2,wrap('int t=in.nextInt(); int h=t/3600; int m=(t-h*3600)/60; int s=t-h*3600-m*60; System.out.println(h+":"+m+":"+s);')],
+ [2,j25('int t=Integer.parseInt(IO.readln()); int h=t/3600; t-=h*3600; int m=t/60; t-=m*60; IO.println(h+" "+m+" "+t);')],
+ [3,wrap('int q=in.nextInt(); int b50=q/50; q=q-b50*50; int b20=q/20; q=q-b20*20; int b10=q/10; q=q-b10*10; int b5=q/5; q=q-b5*5; int m2=q/2; int m1=q-m2*2; System.out.println(b50+" "+b20+" "+b10+" "+b5+" "+m2+" "+m1);')],
+ [3,wrap('int q=in.nextInt(); int b50=q/50; q-=b50*50; int b20=q/20; q-=b20*20; int b10=q/10; q-=b10*10; int b5=q/5; q%=5; int m2=q/2; int m1=q%2; System.out.println(b50+" "+b20+" "+b10+" "+b5+" "+m2+" "+m1);')],
+];
+for(const [id,src] of sinMod){const r=A.validate(id,src);assert.ok(r.complete,`Sin % · ejercicio ${id}: faltan ${r.results.filter(x=>!x.pass).map(x=>x.id).join(', ')}`);}
+// Solo divisiones, sin calcular lo que sobra: no debe superarse.
+assert.ok(!A.validate(3,wrap('int q=in.nextInt(); System.out.println(q/50+" "+q/20+" "+q/10+" "+q/5+" "+q/2+" "+q/1);')).complete);
+console.log('✓ Tiempo y cajero: aceptados con % y también dividiendo y restando.');
