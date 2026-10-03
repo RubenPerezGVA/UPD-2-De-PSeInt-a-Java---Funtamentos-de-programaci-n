@@ -1,6 +1,12 @@
-# Java paso a paso · 1.º DAW / DAM
+# Java paso a paso · 1.º DAW
 
 **Autor:** Rubén Pérez Ibáñez · IES Álvaro Falomir · Curso 2026/27.
+
+| Evaluación | Horas | RA | Fechas previstas |
+|---|---|---|---|
+| 1.ª | 24 h | RA1, RA2, RA5 | 25/09 – 16/10 |
+
+**Contenidos:** del pseudocódigo a Java, IntelliJ IDEA, estructura de un programa, variables, tipos primitivos, literales y constantes, operadores, conversiones de tipo, entrada con `Scanner`, salida con formato y métodos estáticos de `Math`.
 
 Web estática basada en la dinámica del proyecto `pseint-1daw`, adaptada a Java y a los **11 ejercicios** de «Introducción a Java. Sentencias simples» (10 ejercicios y uno de ampliación). Incluye la teoría PDF de «Elementos básicos del lenguaje» como material complementario.
 
@@ -52,3 +58,20 @@ Segunda página con **12 retos nuevos** del mismo nivel (solo sentencias simples
 
 - Cada ejercicio (práctica 1 y ampliación) trae en su plantilla pistas paso a paso como comentarios con huecos `___`. Al ser comentarios, el validador las ignora: la plantilla sin completar no supera ningún ejercicio. Quien ya tenga código guardado las verá con «Recuperar plantilla».
 - En la ampliación, el tiempo (h/min/s) y el cajero admiten calcular lo que sobra con `%` o dividiendo y restando (`resto = total - horas * 3600`, `q -= b50 * 50`).
+
+---
+
+<!-- BEGIN programacion-0485 (generado con gen/sync_ideaprojects.py desde gen/data.py; no editar a mano) -->
+## Relación con la programación didáctica 2026-27
+
+Ficha de la **UP2** en la programación del módulo 0485 (1.º DAW): 24 h · 1.ª evaluación · RA 1, 2, 5 · 25/09 – 16/10. Cada práctica evaluable (P, 10 % de la nota, Apto / No apto) tiene una actividad de **refuerzo** (R) y otra de **ampliación** (A) con el mismo número, que trabajan criterios de evaluación de la propia práctica. El examen de la evaluación (90 %) evalúa todos los criterios de las prácticas.
+
+| Código | Actividad | Criterios de evaluación |
+|---|---|---|
+| **P2.1** | Java paso a paso: 11 ejercicios de sentencias simples traducidos desde PSeInt (E/S, áreas y perímetros, `Math.PI`, intercambio de variables, ventas, IVA, conversiones) (web autovalidada + justificante) y ficheros `.java`. | RA1 a, b, c, d, e, f, g, h, i; RA2 b, e, g, i; RA5 a, b |
+| R2.1 | Refuerzo: Ejercicios resueltos y propuestos de la teoría de elementos básicos de Java y ejemplos de la guía de la UP2, rehechos con otros datos. | RA1 d, e, h; RA5 a |
+| A2.1 | Ampliación: Variantes de los ejercicios con salida formateada (`printf`) y cálculos con `Math` (redondeo, potencias, raíces). | RA1 g, h; RA2 e; RA5 b |
+| **P2.2** | Ampliación de sentencias simples: 12 retos (división entera y resto, fórmulas, `final` y `Math`) (web autovalidada + justificante). | RA1 e, f, g, h; RA2 b, e, i; RA5 a, b |
+| R2.2 | Refuerzo: Retos de división entera y resto (tiempo, cajero) partiendo de la plantilla con pistas («Recuperar plantilla») y corrección por criterios del validador. | RA1 e, g; RA5 a |
+| A2.2 | Ampliación: Desglose de un importe con céntimos en billetes y monedas: conversión `double`→`int` y redondeo, constantes `final` y salida con formato. | RA1 f, g, h; RA2 e; RA5 b |
+<!-- END programacion-0485 -->

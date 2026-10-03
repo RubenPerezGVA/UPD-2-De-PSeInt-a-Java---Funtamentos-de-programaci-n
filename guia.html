@@ -1,0 +1,1237 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Guía de fundamentos de Java para 1.º DAW: IntelliJ, variables, tipos, operadores, conversiones y entrada/salida." />
+  <meta name="author" content="Rubén Pérez Ibáñez" />
+  <title>Fundamentos de Java · Guía · 1.º DAW · IES Álvaro Falomir</title>
+  <link rel="stylesheet" href="guia.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">{ }</div>
+    <div><strong>Programación · 1.º DAW</strong><span>IES Álvaro Falomir · Curso 2026/27</span></div>
+  </div>
+  <div class="top-actions"><a class="btn ghost" href="index.html">← Ejercicios</a><a class="btn primary" href="docs/Guia_UP2_Fundamentos_de_Java_1DAW.pdf" target="_blank">Guía PDF</a></div>
+</header>
+<main class="page">
+  <section class="hero">
+    <span class="eyebrow">Material de apoyo · UP2</span>
+    <h1>Fundamentos de Java</h1>
+    <p>Del pseudocódigo al primer programa real: IntelliJ, estructura de un programa, variables, tipos, constantes, operadores, conversiones y entrada/salida.</p>
+    <p class="author-line"><strong>Autor:</strong> Rubén Pérez Ibáñez · Programación (0485) · 1.º DAW · IES Álvaro Falomir · Curso 2026/27</p>
+    <div class="hero-links"><a class="btn ghost" href="#cómo-utilizar-esta-guía">Empezar</a><a class="btn ghost" href="docs/Guia_UP2_Fundamentos_de_Java_1DAW.pdf" target="_blank">Descargar en PDF</a></div>
+  </section>
+  <nav class="toc" aria-label="Índice de la guía">
+    <h2>Contenido</h2>
+    <div class="toc-grid">
+<a href="#cómo-utilizar-esta-guía">Cómo utilizar esta guía</a>
+<a href="#de-pseint-a-java">1. De PSeInt a Java</a>
+<a href="#intellij-idea-tu-primer-proyecto">2. IntelliJ IDEA: tu primer proyecto</a>
+<a href="#estructura-de-un-programa-java">3. Estructura de un programa Java</a>
+<a href="#comentarios-identificadores-y-convenciones">4. Comentarios, identificadores y convenciones</a>
+<a href="#variables-y-tipos-de-datos">5. Variables y tipos de datos</a>
+<a href="#constantes-y-literales">6. Constantes y literales</a>
+<a href="#operadores-y-expresiones">7. Operadores y expresiones</a>
+<a href="#conversiones-de-tipo">8. Conversiones de tipo</a>
+<a href="#salida-por-pantalla">9. Salida por pantalla</a>
+<a href="#entrada-por-teclado">10. Entrada por teclado</a>
+<a href="#la-clase-math">11. La clase Math</a>
+<a href="#errores-frecuentes-y-cómo-leerlos">12. Errores frecuentes y cómo leerlos</a>
+<a href="#ejemplos-resueltos-paso-a-paso">13. Ejemplos resueltos paso a paso</a>
+<a href="#banco-de-ejercicios">14. Banco de ejercicios</a>
+<a href="#referencia-rápida">15. Referencia rápida</a>
+    </div>
+  </nav>
+<section id="cómo-utilizar-esta-guía" class="level2">
+<h2>Cómo utilizar esta guía</h2>
+<p>Esta guía acompaña a la UP2 y tiene un objetivo muy concreto: que pases de escribir algoritmos en PSeInt a escribir <strong>programas reales en Java</strong> que compilan, se ejecutan y resuelven problemas sencillos de entrada, cálculo y salida.</p>
+<p>Cada apartado sigue la misma secuencia que ya conoces de la UP1: <strong>problema → idea → código → prueba → ejercicio</strong>. No intentes memorizar toda la sintaxis de golpe: escribe los ejemplos en IntelliJ, ejecútalos, cambia una línea y observa qué ocurre.</p>
+<div class="callout ok"><strong class="t">Objetivo de la unidad</strong>
+<p>Al terminar deberías ser capaz de crear un proyecto en IntelliJ, declarar variables del tipo adecuado, leer datos por teclado, hacer cálculos con operadores y mostrar resultados con un formato claro.</p>
+</div>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Si quieres…</th>
+<th>Ve al apartado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ver la equivalencia entre PSeInt y Java</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Crear y ejecutar tu primer proyecto</td>
+<td>2 y 3</td>
+</tr>
+<tr class="odd">
+<td>Saber qué tipo de dato usar</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Entender por qué <code>7 / 2</code> da 3</td>
+<td>7 y 8</td>
+</tr>
+<tr class="odd">
+<td>Leer datos sin errores raros</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Consultar la sintaxis rápidamente</td>
+<td>15</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="de-pseint-a-java" class="level2">
+<h2>1. De PSeInt a Java</h2>
+<p>En la UP1 aprendiste a pensar algoritmos. Java no cambia la lógica: cambia la forma de escribirla. La mayoría de lo que hacías en PSeInt tiene una traducción directa.</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>PSeInt</th>
+<th>Java</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Algoritmo Saludo … FinAlgoritmo</code></td>
+<td><code>public class Saludo { public static void main(String[] args) { … } }</code></td>
+<td>El programa vive dentro de una clase y empieza en <code>main</code>.</td>
+</tr>
+<tr class="even">
+<td><code>Definir edad Como Entero</code></td>
+<td><code>int edad;</code></td>
+<td>En Java es obligatorio declarar el tipo.</td>
+</tr>
+<tr class="odd">
+<td><code>Definir precio Como Real</code></td>
+<td><code>double precio;</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Definir nombre Como Caracter</code></td>
+<td><code>String nombre;</code></td>
+<td><code>String</code> empieza por mayúscula.</td>
+</tr>
+<tr class="odd">
+<td><code>Definir ok Como Logico</code></td>
+<td><code>boolean ok;</code></td>
+<td>Valores <code>true</code> / <code>false</code>.</td>
+</tr>
+<tr class="even">
+<td><code>edad &lt;- 18</code></td>
+<td><code>edad = 18;</code></td>
+<td>El <code>=</code> de Java <strong>asigna</strong>; no compara.</td>
+</tr>
+<tr class="odd">
+<td><code>Escribir "Hola"</code></td>
+<td><code>System.out.println("Hola");</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Leer edad</code></td>
+<td><code>edad = teclado.nextInt();</code></td>
+<td>Necesita un <code>Scanner</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>a MOD b</code></td>
+<td><code>a % b</code></td>
+<td>Resto de la división entera.</td>
+</tr>
+<tr class="even">
+<td><code>a ^ 2</code></td>
+<td><code>Math.pow(a, 2)</code> o <code>a * a</code></td>
+<td><code>^</code> en Java <strong>no</strong> es potencia.</td>
+</tr>
+<tr class="odd">
+<td><code>Y</code>, <code>O</code>, <code>NO</code></td>
+<td><code>&amp;&amp;</code>, <code>||</code>, <code>!</code></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout"><strong class="t">Tres diferencias que más errores provocan</strong>
+<p>Cada instrucción termina en <code>;</code>. Java distingue mayúsculas y minúsculas, así que <code>Edad</code> y <code>edad</code> son variables distintas. Y los bloques se delimitan con llaves <code>{ }</code>, no con palabras como <code>FinSi</code>.</p>
+</div>
+<section id="compilar-y-ejecutar" class="level3">
+<h3>1.1. Compilar y ejecutar</h3>
+<p>PSeInt interpretaba tu algoritmo directamente. Java hace dos pasos:</p>
+<ol type="1">
+<li><strong>Compilación.</strong> El compilador (<code>javac</code>) revisa el código fuente (<code>Saludo.java</code>) y, si no hay errores, genera <em>bytecode</em> (<code>Saludo.class</code>).</li>
+<li><strong>Ejecución.</strong> La máquina virtual de Java (JVM) ejecuta ese <em>bytecode</em>. Por eso el mismo programa funciona en Windows, macOS o Linux.</li>
+</ol>
+<p>IntelliJ hace ambos pasos cuando pulsas el botón ▶ <em>Run</em>. Si hay un error de compilación, el programa <strong>no llega a ejecutarse</strong>: el IDE subraya en rojo la línea y muestra un mensaje en la parte inferior.</p>
+</section>
+</section>
+<section id="intellij-idea-tu-primer-proyecto" class="level2">
+<h2>2. IntelliJ IDEA: tu primer proyecto</h2>
+<p>Usaremos <strong>IntelliJ IDEA Community</strong> (gratuito) o la licencia educativa de Ultimate.</p>
+<section id="crear-el-proyecto" class="level3">
+<h3>2.1. Crear el proyecto</h3>
+<ol type="1">
+<li><em>File → New → Project…</em></li>
+<li>Elige <strong>Java</strong>, ponle nombre (<code>up2-ejercicios</code>) y una ubicación que recuerdes.</li>
+<li><em>Build system:</em> <strong>IntelliJ</strong> (más adelante usaremos Maven).</li>
+<li><em>JDK:</em> elige uno instalado (21 o superior). Si no aparece ninguno, <em>Download JDK…</em> y selecciona una distribución (por ejemplo, Eclipse Temurin).</li>
+<li>Desmarca <em>Add sample code</em> si quieres empezar desde cero.</li>
+</ol>
+</section>
+<section id="crear-una-clase-y-ejecutarla" class="level3">
+<h3>2.2. Crear una clase y ejecutarla</h3>
+<ol type="1">
+<li>Clic derecho sobre la carpeta <code>src</code> → <em>New → Java Class</em> → escribe <code>Saludo</code>.</li>
+<li>Escribe <code>psvm</code> y pulsa Tab: IntelliJ genera el método <code>main</code>.</li>
+<li>Dentro de <code>main</code>, escribe <code>sout</code> y pulsa Tab: genera <code>System.out.println();</code>.</li>
+<li>Ejecuta con el triángulo verde que aparece junto a <code>main</code> (o Mayús + F10).</li>
+</ol>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Atajo / plantilla</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>psvm</code> + Tab</td>
+<td>Crea <code>public static void main(String[] args)</code></td>
+</tr>
+<tr class="even">
+<td><code>sout</code> + Tab</td>
+<td>Crea <code>System.out.println();</code></td>
+</tr>
+<tr class="odd">
+<td><code>souf</code> + Tab</td>
+<td>Crea <code>System.out.printf("");</code></td>
+</tr>
+<tr class="even">
+<td>Ctrl + Alt + L (⌥⌘L en macOS)</td>
+<td>Reformatea el código (sangría y espacios)</td>
+</tr>
+<tr class="odd">
+<td>Alt + Intro (⌥↩︎)</td>
+<td>Muestra soluciones rápidas para el error subrayado</td>
+</tr>
+<tr class="even">
+<td>Ctrl + / (⌘/)</td>
+<td>Comenta o descomenta la línea</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout"><strong class="t">Consejo</strong>
+<p>Pulsa <strong>Ctrl + Alt + L</strong> antes de entregar cualquier ejercicio. Un código bien sangrado se lee mucho mejor y facilita encontrar llaves mal cerradas.</p>
+</div>
+</section>
+</section>
+<section id="estructura-de-un-programa-java" class="level2">
+<h2>3. Estructura de un programa Java</h2>
+<section id="forma-clásica" class="level3">
+<h3>3.1. Forma clásica</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Saludo <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Hola, mundo&quot;</span><span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parte</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>public class Saludo</code></td>
+<td>Define una clase pública llamada <code>Saludo</code>. <strong>El archivo debe llamarse <code>Saludo.java</code>.</strong></td>
+</tr>
+<tr class="even">
+<td><code>{ … }</code></td>
+<td>Las llaves delimitan el contenido de la clase y del método.</td>
+</tr>
+<tr class="odd">
+<td><code>public static void main(String[] args)</code></td>
+<td>Punto de entrada: la JVM empieza a ejecutar aquí.</td>
+</tr>
+<tr class="even">
+<td><code>System.out.println(...)</code></td>
+<td>Escribe un texto en la consola y salta de línea.</td>
+</tr>
+<tr class="odd">
+<td><code>;</code></td>
+<td>Fin de la instrucción.</td>
+</tr>
+</tbody>
+</table></div>
+<p>De momento, copia la cabecera de <code>main</code> tal cual. En las UP4 y UP5 entenderás qué significan <code>static</code>, <code>void</code> y <code>String[] args</code>.</p>
+</section>
+<section id="forma-compacta-java-25-y-posteriores" class="level3">
+<h3>3.2. Forma compacta (Java 25 y posteriores)</h3>
+<p>Desde Java 25 se puede escribir un programa sencillo sin declarar la clase y con un <code>main</code> más corto. Además, la clase <code>IO</code> simplifica la entrada y salida:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span> nombre <span class="op">=</span> IO<span class="op">.</span><span class="fu">readln</span><span class="op">(</span><span class="st">&quot;¿Cómo te llamas? &quot;</span><span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    IO<span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Hola, &quot;</span> <span class="op">+</span> nombre<span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Es útil para los primeros ejercicios, y la web de la UP2 la acepta. Aun así, en clase usaremos sobre todo la forma clásica, porque es la que encontrarás en la mayoría de proyectos y la que necesitaremos cuando trabajemos con objetos.</p>
+<div class="callout warn"><strong class="t">Cuidado</strong>
+<p>La forma compacta solo funciona con un JDK 25 o superior. Si IntelliJ marca error en <code>void main()</code>, revisa en <em>File → Project Structure → Project</em> que el SDK y el <em>Language level</em> sean 25.</p>
+</div>
+</section>
+</section>
+<section id="comentarios-identificadores-y-convenciones" class="level2">
+<h2>4. Comentarios, identificadores y convenciones</h2>
+<section id="comentarios" class="level3">
+<h3>4.1. Comentarios</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Comentario de una línea</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* Comentario</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">   de varias líneas */</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Comentario de documentaci<span class="co">ó</span>n <span class="co">(</span>Javadoc<span class="co">).</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Se usa para documentar clases y m<span class="co">é</span>todos<span class="co">.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span></code></pre></div>
+<p>Comenta el <strong>porqué</strong> y no lo evidente. <code>// suma 1 a i</code> no aporta nada; <code>// el primer día del mes es el 1, no el 0</code> sí.</p>
+</section>
+<section id="identificadores" class="level3">
+<h3>4.2. Identificadores</h3>
+<p>Un identificador es el nombre que das a una variable, constante, método o clase.</p>
+<ul>
+<li>Puede contener letras, dígitos, <code>_</code> y <code>$</code>, pero <strong>no puede empezar por un dígito</strong>.</li>
+<li>No puede coincidir con una palabra reservada (<code>int</code>, <code>class</code>, <code>if</code>, <code>public</code>…).</li>
+<li>Distingue mayúsculas y minúsculas.</li>
+</ul>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Elemento</th>
+<th>Convención</th>
+<th>Ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variables y métodos</td>
+<td><em>lowerCamelCase</em></td>
+<td><code>precioFinal</code>, <code>numeroAlumnos</code>, <code>calcularMedia</code></td>
+</tr>
+<tr class="even">
+<td>Clases</td>
+<td><em>UpperCamelCase</em></td>
+<td><code>Saludo</code>, <code>CalculadoraIva</code></td>
+</tr>
+<tr class="odd">
+<td>Constantes</td>
+<td>MAYÚSCULAS con <code>_</code></td>
+<td><code>IVA</code>, <code>PRECIO_MAXIMO</code></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout"><strong class="t">Nombres significativos</strong>
+<p><code>double p1, p2;</code> obliga a adivinar. <code>double precioSinIva, precioConIva;</code> se explica solo. Evita también tildes y la ñ en los identificadores: Java las admite, pero pueden dar problemas al cambiar de sistema operativo.</p>
+</div>
+</section>
+</section>
+<section id="variables-y-tipos-de-datos" class="level2">
+<h2>5. Variables y tipos de datos</h2>
+<p>Una <strong>variable</strong> es un espacio de memoria con nombre, tipo y valor. En Java se declara indicando primero el tipo:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> edad<span class="op">;</span>              <span class="co">// declaración</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">18</span><span class="op">;</span>             <span class="co">// asignación</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> altura <span class="op">=</span> <span class="fl">1.75</span><span class="op">;</span>  <span class="co">// declaración con inicialización</span></span></code></pre></div>
+<section id="tipos-primitivos" class="level3">
+<h3>5.1. Tipos primitivos</h3>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Ocupa</th>
+<th>Rango / valores</th>
+<th>Uso habitual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>byte</code></td>
+<td>1 byte</td>
+<td>−128 a 127</td>
+<td>Datos binarios</td>
+</tr>
+<tr class="even">
+<td><code>short</code></td>
+<td>2 bytes</td>
+<td>−32 768 a 32 767</td>
+<td>Poco usado</td>
+</tr>
+<tr class="odd">
+<td><code>int</code></td>
+<td>4 bytes</td>
+<td>≈ ±2 100 millones</td>
+<td><strong>Enteros por defecto</strong></td>
+</tr>
+<tr class="even">
+<td><code>long</code></td>
+<td>8 bytes</td>
+<td>≈ ±9·10¹⁸</td>
+<td>Enteros muy grandes (<code>3_000_000_000L</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>float</code></td>
+<td>4 bytes</td>
+<td>~7 cifras significativas</td>
+<td>Poco usado (<code>2.5f</code>)</td>
+</tr>
+<tr class="even">
+<td><code>double</code></td>
+<td>8 bytes</td>
+<td>~15 cifras significativas</td>
+<td><strong>Decimales por defecto</strong></td>
+</tr>
+<tr class="odd">
+<td><code>char</code></td>
+<td>2 bytes</td>
+<td>Un carácter Unicode</td>
+<td><code>'A'</code>, <code>'7'</code>, <code>'ñ'</code></td>
+</tr>
+<tr class="even">
+<td><code>boolean</code></td>
+<td>—</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Condiciones</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="el-tipo-string" class="level3">
+<h3>5.2. El tipo <code>String</code></h3>
+<p><code>String</code> no es un tipo primitivo, sino una <strong>clase</strong> que representa cadenas de texto. Se escribe con comillas dobles; un <code>char</code> va entre comillas simples.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> ciclo <span class="op">=</span> <span class="st">&quot;DAW&quot;</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> grupo <span class="op">=</span> <span class="ch">&#39;A&#39;</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> mensaje <span class="op">=</span> <span class="st">&quot;Estudio &quot;</span> <span class="op">+</span> ciclo <span class="op">+</span> <span class="st">&quot; en el grupo &quot;</span> <span class="op">+</span> grupo<span class="op">;</span></span></code></pre></div>
+<p>El operador <code>+</code> con un <code>String</code> <strong>concatena</strong>: une textos y convierte a texto los números que encuentre.</p>
+</section>
+<section id="qué-tipo-elijo" class="level3">
+<h3>5.3. ¿Qué tipo elijo?</h3>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dato</th>
+<th>Tipo recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Edad, unidades, número de alumnos</td>
+<td><code>int</code></td>
+</tr>
+<tr class="even">
+<td>Precio, nota, temperatura, altura</td>
+<td><code>double</code></td>
+</tr>
+<tr class="odd">
+<td>Nombre, DNI, teléfono, código postal</td>
+<td><code>String</code> (no se opera con ellos)</td>
+</tr>
+<tr class="even">
+<td>Respuesta sí/no, aprobado/suspendido</td>
+<td><code>boolean</code></td>
+</tr>
+<tr class="odd">
+<td>Una letra suelta (opción de menú)</td>
+<td><code>char</code></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout warn"><strong class="t">Error clásico</strong>
+<p>Un teléfono o un código postal <strong>no</strong> son números aunque solo tengan dígitos: no se suman ni se multiplican, y un <code>int</code> perdería el cero inicial de <code>08001</code>. Guárdalos como <code>String</code>.</p>
+</div>
+</section>
+<section id="inferencia-con-var" class="level3">
+<h3>5.4. Inferencia con <code>var</code></h3>
+<p>Dentro de un método puedes escribir <code>var</code> y Java deduce el tipo por el valor inicial: <code>var total = 0.0;</code> crea un <code>double</code>. Úsalo solo cuando el tipo sea evidente; al principio es mejor escribir el tipo explícitamente.</p>
+</section>
+</section>
+<section id="constantes-y-literales" class="level2">
+<h2>6. Constantes y literales</h2>
+<section id="constantes-con-final" class="level3">
+<h3>6.1. Constantes con <code>final</code></h3>
+<p>Una constante es una variable cuyo valor no puede cambiar después de asignarlo:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">final</span> <span class="dt">double</span> IVA <span class="op">=</span> <span class="fl">0.21</span><span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">final</span> <span class="dt">int</span> MAX_INTENTOS <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span></code></pre></div>
+<p>Si intentas <code>IVA = 0.10;</code>, el compilador da error. Las constantes evitan los <strong>números mágicos</strong>: un <code>0.21</code> repartido por el código obliga a buscarlo en todas partes si cambia el impuesto.</p>
+</section>
+<section id="literales" class="level3">
+<h3>6.2. Literales</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Literal</th>
+<th>Tipo</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Entero</td>
+<td><code>int</code></td>
+<td><code>42</code>, <code>-7</code>, <code>1_000_000</code></td>
+</tr>
+<tr class="even">
+<td>Entero largo</td>
+<td><code>long</code></td>
+<td><code>9_000_000_000L</code></td>
+</tr>
+<tr class="odd">
+<td>Decimal</td>
+<td><code>double</code></td>
+<td><code>3.14</code>, <code>2e3</code> (2000.0)</td>
+</tr>
+<tr class="even">
+<td>Decimal simple</td>
+<td><code>float</code></td>
+<td><code>3.14f</code></td>
+</tr>
+<tr class="odd">
+<td>Carácter</td>
+<td><code>char</code></td>
+<td><code>'a'</code>, <code>'\n'</code></td>
+</tr>
+<tr class="even">
+<td>Texto</td>
+<td><code>String</code></td>
+<td><code>"Hola"</code></td>
+</tr>
+<tr class="odd">
+<td>Lógico</td>
+<td><code>boolean</code></td>
+<td><code>true</code>, <code>false</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>En el código, el separador decimal <strong>siempre es el punto</strong>: <code>3.5</code>, nunca <code>3,5</code>.</p>
+</section>
+</section>
+<section id="operadores-y-expresiones" class="level2">
+<h2>7. Operadores y expresiones</h2>
+<section id="aritméticos" class="level3">
+<h3>7.1. Aritméticos</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Operador</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>+</code></td>
+<td>Suma (o concatenación)</td>
+<td><code>7 + 2</code></td>
+<td><code>9</code></td>
+</tr>
+<tr class="even">
+<td><code>-</code></td>
+<td>Resta</td>
+<td><code>7 - 2</code></td>
+<td><code>5</code></td>
+</tr>
+<tr class="odd">
+<td><code>*</code></td>
+<td>Multiplicación</td>
+<td><code>7 * 2</code></td>
+<td><code>14</code></td>
+</tr>
+<tr class="even">
+<td><code>/</code></td>
+<td>División</td>
+<td><code>7 / 2</code></td>
+<td><code>3</code> (¡entera!)</td>
+</tr>
+<tr class="odd">
+<td><code>/</code></td>
+<td>División</td>
+<td><code>7.0 / 2</code></td>
+<td><code>3.5</code></td>
+</tr>
+<tr class="even">
+<td><code>%</code></td>
+<td>Resto</td>
+<td><code>7 % 2</code></td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="la-división-entera" class="level3">
+<h3>7.2. La división entera</h3>
+<p>Si los <strong>dos</strong> operandos son enteros, <code>/</code> hace división entera y descarta los decimales. Esto es útil (separar horas y minutos, cifras de un número) y también una fuente de errores.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> totalSegundos <span class="op">=</span> <span class="dv">3725</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> horas <span class="op">=</span> totalSegundos <span class="op">/</span> <span class="dv">3600</span><span class="op">;</span>            <span class="co">// 1</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> minutos <span class="op">=</span> totalSegundos <span class="op">%</span> <span class="dv">3600</span> <span class="op">/</span> <span class="dv">60</span><span class="op">;</span>     <span class="co">// 2</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> segundos <span class="op">=</span> totalSegundos <span class="op">%</span> <span class="dv">60</span><span class="op">;</span>           <span class="co">// 5</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> suma <span class="op">=</span> <span class="dv">7</span> <span class="op">+</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> mediaMal <span class="op">=</span> suma <span class="op">/</span> <span class="dv">2</span><span class="op">;</span>                  <span class="co">// 7.0  (se divide como int)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> mediaBien <span class="op">=</span> suma <span class="op">/</span> <span class="fl">2.0</span><span class="op">;</span>               <span class="co">// 7.5</span></span></code></pre></div>
+<div class="callout warn"><strong class="t">Recuerda</strong>
+<p><code>double media = suma / 2;</code> <strong>no</strong> arregla el problema: primero se calcula <code>suma / 2</code> con enteros (7) y después se guarda como <code>7.0</code>. Uno de los operandos debe ser decimal antes de dividir.</p>
+</div>
+</section>
+<section id="asignación-compuesta-incremento-y-decremento" class="level3">
+<h3>7.3. Asignación compuesta, incremento y decremento</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Expresión</th>
+<th>Equivale a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>x += 5</code></td>
+<td><code>x = x + 5</code></td>
+</tr>
+<tr class="even">
+<td><code>x -= 2</code></td>
+<td><code>x = x - 2</code></td>
+</tr>
+<tr class="odd">
+<td><code>x *= 3</code></td>
+<td><code>x = x * 3</code></td>
+</tr>
+<tr class="even">
+<td><code>x /= 2</code></td>
+<td><code>x = x / 2</code></td>
+</tr>
+<tr class="odd">
+<td><code>x %= 4</code></td>
+<td><code>x = x % 4</code></td>
+</tr>
+<tr class="even">
+<td><code>x++</code> / <code>++x</code></td>
+<td><code>x = x + 1</code></td>
+</tr>
+<tr class="odd">
+<td><code>x--</code> / <code>--x</code></td>
+<td><code>x = x - 1</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><code>x++</code> usa el valor y después incrementa; <code>++x</code> incrementa y después usa el valor. Para evitar confusiones, escríbelos en una línea propia (<code>contador++;</code>).</p>
+</section>
+<section id="relacionales-y-lógicos" class="level3">
+<h3>7.4. Relacionales y lógicos</h3>
+<p>Devuelven un <code>boolean</code> y los usarás constantemente en la UP3.</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operador</th>
+<th>Significado</th>
+<th>Operador</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>igual</td>
+<td><code>&amp;&amp;</code></td>
+<td>Y (ambas ciertas)</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>distinto</td>
+<td><code>||</code></td>
+<td>O (al menos una cierta)</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;</code> <code>&lt;=</code></td>
+<td>menor, menor o igual</td>
+<td><code>!</code></td>
+<td>NO (niega)</td>
+</tr>
+<tr class="even">
+<td><code>&gt;</code> <code>&gt;=</code></td>
+<td>mayor, mayor o igual</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> edad <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">boolean</span> mayorDeEdad <span class="op">=</span> edad <span class="op">&gt;=</span> <span class="dv">18</span><span class="op">;</span>                 <span class="co">// true</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">boolean</span> joven <span class="op">=</span> edad <span class="op">&gt;=</span> <span class="dv">18</span> <span class="op">&amp;&amp;</span> edad <span class="op">&lt;</span> <span class="dv">30</span><span class="op">;</span>          <span class="co">// true</span></span></code></pre></div>
+<div class="callout warn"><strong class="t">No confundir</strong>
+<p><code>=</code> asigna y <code>==</code> compara números. Para comparar textos <strong>no</strong> se usa <code>==</code>, sino <code>texto1.equals(texto2)</code>; lo veremos en la UP3.</p>
+</div>
+</section>
+<section id="precedencia" class="level3">
+<h3>7.5. Precedencia</h3>
+<p>De mayor a menor prioridad: paréntesis → <code>++ -- !</code> → <code>* / %</code> → <code>+ -</code> → relacionales → <code>==</code> <code>!=</code> → <code>&amp;&amp;</code> → <code>||</code> → asignaciones. Ante la duda, <strong>usa paréntesis</strong>: <code>(a + b) / 2</code> no es lo mismo que <code>a + b / 2</code>.</p>
+</section>
+</section>
+<section id="conversiones-de-tipo" class="level2">
+<h2>8. Conversiones de tipo</h2>
+<section id="conversión-implícita-ampliación" class="level3">
+<h3>8.1. Conversión implícita (ampliación)</h3>
+<p>Java convierte automáticamente de un tipo «pequeño» a otro «grande» porque no se pierde información: <code>int → long → float → double</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> unidades <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> precioUnitario <span class="op">=</span> <span class="fl">2.5</span><span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> total <span class="op">=</span> unidades <span class="op">*</span> precioUnitario<span class="op">;</span>   <span class="co">// el int se convierte en double: 7.5</span></span></code></pre></div>
+</section>
+<section id="conversión-explícita-casting" class="level3">
+<h3>8.2. Conversión explícita (<em>casting</em>)</h3>
+<p>Para ir de un tipo grande a uno pequeño hay que indicarlo, porque se puede perder información:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> nota <span class="op">=</span> <span class="fl">7.8</span><span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> notaEntera <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span> nota<span class="op">;</span>                <span class="co">// 7: se trunca, no se redondea</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> redondeada <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span><span class="op">(</span>nota<span class="op">);</span>         <span class="co">// 8</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> media <span class="op">=</span> <span class="op">(</span><span class="dt">double</span><span class="op">)</span> <span class="dv">15</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span>             <span class="co">// 7.5</span></span></code></pre></div>
+</section>
+<section id="de-texto-a-número-y-de-número-a-texto" class="level3">
+<h3>8.3. De texto a número y de número a texto</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> edad <span class="op">=</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">parseInt</span><span class="op">(</span><span class="st">&quot;18&quot;</span><span class="op">);</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> precio <span class="op">=</span> <span class="bu">Double</span><span class="op">.</span><span class="fu">parseDouble</span><span class="op">(</span><span class="st">&quot;19.95&quot;</span><span class="op">);</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> texto <span class="op">=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">valueOf</span><span class="op">(</span><span class="dv">42</span><span class="op">);</span>          <span class="co">// &quot;42&quot;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> otro <span class="op">=</span> <span class="st">&quot;&quot;</span> <span class="op">+</span> <span class="fl">3.5</span><span class="op">;</span>                     <span class="co">// &quot;3.5&quot;</span></span></code></pre></div>
+<p>Si el texto no es un número válido (<code>"hola"</code>, <code>"19,95"</code>), <code>parseInt</code>/<code>parseDouble</code> lanzan una excepción y el programa se detiene. En la UP3 aprenderás a validar la entrada antes de convertir.</p>
+</section>
+</section>
+<section id="salida-por-pantalla" class="level2">
+<h2>9. Salida por pantalla</h2>
+<section id="print-y-println" class="level3">
+<h3>9.1. <code>print</code> y <code>println</code></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Sin salto &quot;</span><span class="op">);</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;con salto al final&quot;</span><span class="op">);</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Total: &quot;</span> <span class="op">+</span> <span class="dv">25</span> <span class="op">+</span> <span class="dv">10</span><span class="op">);</span>     <span class="co">// Total: 2510</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Total: &quot;</span> <span class="op">+</span> <span class="op">(</span><span class="dv">25</span> <span class="op">+</span> <span class="dv">10</span><span class="op">));</span>   <span class="co">// Total: 35</span></span></code></pre></div>
+<p>Observa las dos últimas líneas: el <code>+</code> se evalúa de izquierda a derecha. En cuanto aparece un <code>String</code>, el resto se concatena como texto. Los paréntesis fuerzan la suma.</p>
+</section>
+<section id="secuencias-de-escape" class="level3">
+<h3>9.2. Secuencias de escape</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Secuencia</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>\n</code></td>
+<td>Salto de línea</td>
+</tr>
+<tr class="even">
+<td><code>\t</code></td>
+<td>Tabulación</td>
+</tr>
+<tr class="odd">
+<td><code>\"</code></td>
+<td>Comillas dobles dentro de un texto</td>
+</tr>
+<tr class="even">
+<td><code>\\</code></td>
+<td>Barra invertida</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="salida-con-formato-printf" class="level3">
+<h3>9.3. Salida con formato: <code>printf</code></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> producto <span class="op">=</span> <span class="st">&quot;Teclado&quot;</span><span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> unidades <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> precio <span class="op">=</span> <span class="fl">25.5</span><span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">&quot;</span><span class="sc">%-10s</span><span class="st"> </span><span class="sc">%3d</span><span class="st"> uds. </span><span class="sc">%8.2f</span><span class="st"> €</span><span class="sc">%n</span><span class="st">&quot;</span><span class="op">,</span> producto<span class="op">,</span> unidades<span class="op">,</span> unidades <span class="op">*</span> precio<span class="op">);</span></span></code></pre></div>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Especificador</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%d</code></td>
+<td>Entero</td>
+</tr>
+<tr class="even">
+<td><code>%f</code>, <code>%.2f</code></td>
+<td>Decimal, con 2 decimales</td>
+</tr>
+<tr class="odd">
+<td><code>%s</code></td>
+<td>Texto</td>
+</tr>
+<tr class="even">
+<td><code>%c</code></td>
+<td>Carácter</td>
+</tr>
+<tr class="odd">
+<td><code>%n</code></td>
+<td>Salto de línea</td>
+</tr>
+<tr class="even">
+<td><code>%8.2f</code></td>
+<td>Ancho mínimo 8, 2 decimales (alineado a la derecha)</td>
+</tr>
+<tr class="odd">
+<td><code>%-10s</code></td>
+<td>Ancho mínimo 10 alineado a la izquierda</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout"><strong class="t">Decimales con coma</strong>
+<p><code>printf</code> usa la configuración regional del ordenador. En un equipo configurado en español verás <code>51,00</code> en lugar de <code>51.00</code>. Es correcto: es solo la forma de mostrarlo.</p>
+</div>
+</section>
+</section>
+<section id="entrada-por-teclado" class="level2">
+<h2>10. Entrada por teclado</h2>
+<section id="la-clase-scanner" class="level3">
+<h3>10.1. La clase <code>Scanner</code></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Scanner</span><span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Datos <span class="op">{</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Scanner</span> teclado <span class="op">=</span> <span class="kw">new</span> <span class="bu">Scanner</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">in</span><span class="op">);</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Nombre: &quot;</span><span class="op">);</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">String</span> nombre <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextLine</span><span class="op">();</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Edad: &quot;</span><span class="op">);</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> edad <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextInt</span><span class="op">();</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Altura en metros: &quot;</span><span class="op">);</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> altura <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextDouble</span><span class="op">();</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>nombre <span class="op">+</span> <span class="st">&quot; tiene &quot;</span> <span class="op">+</span> edad <span class="op">+</span> <span class="st">&quot; años y mide &quot;</span> <span class="op">+</span> altura <span class="op">+</span> <span class="st">&quot; m&quot;</span><span class="op">);</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Lee</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>nextLine()</code></td>
+<td>Una línea completa de texto (con espacios)</td>
+</tr>
+<tr class="even">
+<td><code>next()</code></td>
+<td>Una palabra (hasta el primer espacio)</td>
+</tr>
+<tr class="odd">
+<td><code>nextInt()</code></td>
+<td>Un <code>int</code></td>
+</tr>
+<tr class="even">
+<td><code>nextDouble()</code></td>
+<td>Un <code>double</code></td>
+</tr>
+<tr class="odd">
+<td><code>nextBoolean()</code></td>
+<td><code>true</code> / <code>false</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>La línea <code>import java.util.Scanner;</code> va al principio del archivo, antes de la clase. IntelliJ la añade sola si pulsas Alt + Intro sobre <code>Scanner</code>.</p>
+</section>
+<section id="trampa-1-nextint-seguido-de-nextline" class="level3">
+<h3>10.2. Trampa 1: <code>nextInt()</code> seguido de <code>nextLine()</code></h3>
+<p><code>nextInt()</code> lee el número, pero deja en el teclado el <strong>Intro</strong> que pulsaste. Si después llamas a <code>nextLine()</code>, este lee esa línea vacía y parece que «se salta» la pregunta.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Edad: &quot;</span><span class="op">);</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> edad <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextInt</span><span class="op">();</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>teclado<span class="op">.</span><span class="fu">nextLine</span><span class="op">();</span>                  <span class="co">// consume el Intro pendiente</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Nombre completo: &quot;</span><span class="op">);</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> nombre <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextLine</span><span class="op">();</span></span></code></pre></div>
+<p>Otra opción es leer siempre líneas y convertir: <code>int edad = Integer.parseInt(teclado.nextLine());</code>.</p>
+</section>
+<section id="trampa-2-punto-o-coma-decimal" class="level3">
+<h3>10.3. Trampa 2: punto o coma decimal</h3>
+<p><code>nextDouble()</code> también depende de la configuración regional. En un ordenador en español espera <strong>coma</strong> (<code>1,75</code>) y falla con <code>1.75</code> (<code>InputMismatchException</code>). Si quieres que siempre acepte el punto:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Scanner</span> teclado <span class="op">=</span> <span class="kw">new</span> <span class="bu">Scanner</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">in</span><span class="op">).</span><span class="fu">useLocale</span><span class="op">(</span>java<span class="op">.</span><span class="fu">util</span><span class="op">.</span><span class="fu">Locale</span><span class="op">.</span><span class="fu">US</span><span class="op">);</span></span></code></pre></div>
+</section>
+<section id="entrada-con-io-java-25" class="level3">
+<h3>10.4. Entrada con <code>IO</code> (Java 25)</h3>
+<p>En la forma compacta, <code>IO.readln("Mensaje: ")</code> muestra el mensaje y devuelve la línea escrita como <code>String</code>. Para números, conviértela:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> edad <span class="op">=</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">parseInt</span><span class="op">(</span>IO<span class="op">.</span><span class="fu">readln</span><span class="op">(</span><span class="st">&quot;Edad: &quot;</span><span class="op">));</span></span></code></pre></div>
+</section>
+</section>
+<section id="la-clase-math" class="level2">
+<h2>11. La clase <code>Math</code></h2>
+<p><code>Math</code> agrupa funciones matemáticas listas para usar. No hace falta <code>import</code>.</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Expresión</th>
+<th>Resultado</th>
+<th>Para qué</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Math.PI</code></td>
+<td>3.141592…</td>
+<td>Constante π</td>
+</tr>
+<tr class="even">
+<td><code>Math.pow(2, 10)</code></td>
+<td>1024.0</td>
+<td>Potencia</td>
+</tr>
+<tr class="odd">
+<td><code>Math.sqrt(16)</code></td>
+<td>4.0</td>
+<td>Raíz cuadrada</td>
+</tr>
+<tr class="even">
+<td><code>Math.abs(-7)</code></td>
+<td>7</td>
+<td>Valor absoluto</td>
+</tr>
+<tr class="odd">
+<td><code>Math.max(3, 9)</code> / <code>Math.min(3, 9)</code></td>
+<td>9 / 3</td>
+<td>Mayor y menor</td>
+</tr>
+<tr class="even">
+<td><code>Math.round(2.5)</code></td>
+<td>3</td>
+<td>Redondeo al entero más cercano</td>
+</tr>
+<tr class="odd">
+<td><code>Math.floor(2.9)</code> / <code>Math.ceil(2.1)</code></td>
+<td>2.0 / 3.0</td>
+<td>Redondeo hacia abajo / arriba</td>
+</tr>
+<tr class="even">
+<td><code>Math.random()</code></td>
+<td>[0, 1)</td>
+<td>Número aleatorio decimal</td>
+</tr>
+</tbody>
+</table></div>
+<p>Para redondear a dos decimales: <code>Math.round(valor * 100) / 100.0</code>.</p>
+<section id="ejemplo-área-y-perímetro-de-un-círculo" class="level3 practice">
+<h3>Ejemplo: área y perímetro de un círculo</h3>
+<p><strong>Entrada:</strong> el radio. <strong>Proceso:</strong> área = π·r², perímetro = 2·π·r. <strong>Salida:</strong> ambos valores con 2 decimales.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Scanner</span><span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Circulo <span class="op">{</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Scanner</span> teclado <span class="op">=</span> <span class="kw">new</span> <span class="bu">Scanner</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">in</span><span class="op">);</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Radio: &quot;</span><span class="op">);</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> radio <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextDouble</span><span class="op">();</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> area <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">PI</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span><span class="op">(</span>radio<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> perimetro <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">PI</span> <span class="op">*</span> radio<span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">&quot;Área: </span><span class="sc">%.2f%n</span><span class="st">&quot;</span><span class="op">,</span> area<span class="op">);</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">&quot;Perímetro: </span><span class="sc">%.2f%n</span><span class="st">&quot;</span><span class="op">,</span> perimetro<span class="op">);</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Prueba:</strong> con radio 2 → área 12,57 y perímetro 12,57.</p>
+</section>
+</section>
+<section id="errores-frecuentes-y-cómo-leerlos" class="level2">
+<h2>12. Errores frecuentes y cómo leerlos</h2>
+<p>Hay tres tipos de errores, y cada uno se detecta en un momento distinto.</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Cuándo aparece</th>
+<th>Ejemplo</th>
+<th>Cómo se resuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>De compilación</td>
+<td>Antes de ejecutar; IntelliJ lo subraya en rojo</td>
+<td>Falta <code>;</code>, variable no declarada, tipos incompatibles</td>
+<td>Lee el mensaje y la línea indicada.</td>
+</tr>
+<tr class="even">
+<td>De ejecución</td>
+<td>Al ejecutar; el programa se detiene con una excepción</td>
+<td>Escribir <code>hola</code> cuando se espera un número</td>
+<td>Lee la primera línea de la traza (<code>Exception in thread "main" …</code>).</td>
+</tr>
+<tr class="odd">
+<td>Lógico</td>
+<td>El programa termina, pero el resultado es incorrecto</td>
+<td>Media con división entera</td>
+<td>Prueba con datos cuyo resultado conoces; haz una traza.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mensaje</th>
+<th>Causa probable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>';' expected</code></td>
+<td>Falta el punto y coma al final de la línea anterior.</td>
+</tr>
+<tr class="even">
+<td><code>cannot find symbol</code></td>
+<td>Nombre mal escrito (mayúsculas) o variable no declarada.</td>
+</tr>
+<tr class="odd">
+<td><code>incompatible types: possible lossy conversion from double to int</code></td>
+<td>Guardas un decimal en un <code>int</code> sin <em>casting</em>.</td>
+</tr>
+<tr class="even">
+<td><code>variable x might not have been initialized</code></td>
+<td>Usas una variable antes de darle valor.</td>
+</tr>
+<tr class="odd">
+<td><code>class Saludo is public, should be declared in a file named Saludo.java</code></td>
+<td>El nombre de la clase y el del archivo no coinciden.</td>
+</tr>
+<tr class="even">
+<td><code>InputMismatchException</code></td>
+<td>El dato tecleado no es del tipo esperado (o punto/coma decimal).</td>
+</tr>
+<tr class="odd">
+<td><code>NumberFormatException</code></td>
+<td><code>parseInt</code>/<code>parseDouble</code> con un texto que no es un número.</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="ejemplos-resueltos-paso-a-paso" class="level2">
+<h2>13. Ejemplos resueltos paso a paso</h2>
+<section id="precio-con-iva" class="level3">
+<h3>13.1. Precio con IVA</h3>
+<p><strong>Problema:</strong> pedir el precio de un producto y mostrar el IVA (21 %) y el total.</p>
+<p><strong>Idea:</strong> constante para el IVA; <code>iva = precio × IVA</code>; <code>total = precio + iva</code>.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Scanner</span><span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> PrecioConIva <span class="op">{</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">final</span> <span class="dt">double</span> IVA <span class="op">=</span> <span class="fl">0.21</span><span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Scanner</span> teclado <span class="op">=</span> <span class="kw">new</span> <span class="bu">Scanner</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">in</span><span class="op">);</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Precio sin IVA: &quot;</span><span class="op">);</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> precio <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextDouble</span><span class="op">();</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> importeIva <span class="op">=</span> precio <span class="op">*</span> IVA<span class="op">;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> total <span class="op">=</span> precio <span class="op">+</span> importeIva<span class="op">;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">&quot;IVA (21 </span><span class="sc">%%</span><span class="st">): </span><span class="sc">%.2f</span><span class="st"> €</span><span class="sc">%n</span><span class="st">&quot;</span><span class="op">,</span> importeIva<span class="op">);</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">&quot;Total: </span><span class="sc">%.2f</span><span class="st"> €</span><span class="sc">%n</span><span class="st">&quot;</span><span class="op">,</span> total<span class="op">);</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Prueba:</strong> 100 → IVA 21,00 € y total 121,00 €. Observa <code>%%</code>: así se escribe un símbolo <code>%</code> dentro de <code>printf</code>.</p>
+</section>
+<section id="intercambio-de-dos-variables" class="level3">
+<h3>13.2. Intercambio de dos variables</h3>
+<p><strong>Problema:</strong> intercambiar los valores de <code>a</code> y <code>b</code>.</p>
+<p><strong>Idea:</strong> si hacemos <code>a = b</code> perdemos el valor de <code>a</code>. Necesitamos una variable auxiliar.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Intercambio <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> a <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> b <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> aux <span class="op">=</span> a<span class="op">;</span>   <span class="co">// guardamos a</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> b<span class="op">;</span>         <span class="co">// a vale 3</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> aux<span class="op">;</span>       <span class="co">// b vale 8</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;a = &quot;</span> <span class="op">+</span> a <span class="op">+</span> <span class="st">&quot;, b = &quot;</span> <span class="op">+</span> b<span class="op">);</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Instrucción</th>
+<th>a</th>
+<th>b</th>
+<th>aux</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>inicio</td>
+<td>8</td>
+<td>3</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><code>aux = a</code></td>
+<td>8</td>
+<td>3</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td><code>a = b</code></td>
+<td>3</td>
+<td>3</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td><code>b = aux</code></td>
+<td>3</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="segundos-a-horas-minutos-y-segundos" class="level3">
+<h3>13.3. Segundos a horas, minutos y segundos</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Scanner</span><span class="op">;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Tiempo <span class="op">{</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Scanner</span> teclado <span class="op">=</span> <span class="kw">new</span> <span class="bu">Scanner</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">in</span><span class="op">);</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Segundos: &quot;</span><span class="op">);</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> total <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextInt</span><span class="op">();</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> horas <span class="op">=</span> total <span class="op">/</span> <span class="dv">3600</span><span class="op">;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> resto <span class="op">=</span> total <span class="op">%</span> <span class="dv">3600</span><span class="op">;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> minutos <span class="op">=</span> resto <span class="op">/</span> <span class="dv">60</span><span class="op">;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> segundos <span class="op">=</span> resto <span class="op">%</span> <span class="dv">60</span><span class="op">;</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>horas <span class="op">+</span> <span class="st">&quot; h &quot;</span> <span class="op">+</span> minutos <span class="op">+</span> <span class="st">&quot; min &quot;</span> <span class="op">+</span> segundos <span class="op">+</span> <span class="st">&quot; s&quot;</span><span class="op">);</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Prueba:</strong> 3725 → <code>1 h 2 min 5 s</code>.</p>
+</section>
+</section>
+<section id="banco-de-ejercicios" class="level2">
+<h2>14. Banco de ejercicios</h2>
+<p>Los ejercicios de esta unidad están en la web de la UP2, con pistas en la plantilla, validación por criterios y justificante:</p>
+<ul>
+<li><strong>Práctica 1 · Sentencias simples (11):</strong> nombre y edad, suma, cinco operaciones, área del rectángulo, círculo, intercambio, informe de ventas, IVA fijo, IVA variable, euros a pesetas y las dos piscinas.</li>
+<li><strong>Ampliación (12 retos):</strong> ticket con propina, segundos a h/min/s, cajero, notas ponderadas, temperaturas, cifras de un número, viaje, carrera, rotación de tres variables, factura de la luz y distancia entre puntos, entre otros.</li>
+</ul>
+<div class="callout ok"><strong class="t">Método de trabajo</strong>
+<p>Resuelve en IntelliJ, ejecuta con varios datos (incluido algún caso límite), pega el código en la web, valida y corrige. La web no compila tu programa: la prueba de verdad es ejecutarlo.</p>
+</div>
+</section>
+<section id="referencia-rápida" class="level2">
+<h2>15. Referencia rápida</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Scanner</span><span class="op">;</span>                     <span class="co">// al principio del archivo</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Plantilla <span class="op">{</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">final</span> <span class="dt">double</span> CONSTANTE <span class="op">=</span> <span class="fl">0.21</span><span class="op">;</span>         <span class="co">// constante</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Scanner</span> teclado <span class="op">=</span> <span class="kw">new</span> <span class="bu">Scanner</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">in</span><span class="op">);</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> entero <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextInt</span><span class="op">();</span>        <span class="co">// leer entero</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> decimal <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextDouble</span><span class="op">();</span> <span class="co">// leer decimal</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        teclado<span class="op">.</span><span class="fu">nextLine</span><span class="op">();</span>                    <span class="co">// limpiar el Intro</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">String</span> texto <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextLine</span><span class="op">();</span>     <span class="co">// leer línea</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> resultado <span class="op">=</span> entero <span class="op">*</span> decimal <span class="op">*</span> CONSTANTE<span class="op">;</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Texto: &quot;</span> <span class="op">+</span> texto<span class="op">);</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">&quot;Resultado: </span><span class="sc">%.2f%n</span><span class="st">&quot;</span><span class="op">,</span> resultado<span class="op">);</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Necesito…</th>
+<th>Escribo…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Resto de una división</td>
+<td><code>a % b</code></td>
+</tr>
+<tr class="even">
+<td>División con decimales entre enteros</td>
+<td><code>(double) a / b</code> o <code>a / 2.0</code></td>
+</tr>
+<tr class="odd">
+<td>Potencia</td>
+<td><code>Math.pow(base, exp)</code></td>
+</tr>
+<tr class="even">
+<td>Raíz cuadrada</td>
+<td><code>Math.sqrt(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Redondear a 2 decimales al mostrar</td>
+<td><code>printf("%.2f", x)</code></td>
+</tr>
+<tr class="even">
+<td>Convertir texto a número</td>
+<td><code>Integer.parseInt(s)</code>, <code>Double.parseDouble(s)</code></td>
+</tr>
+<tr class="odd">
+<td>Truncar un decimal</td>
+<td><code>(int) x</code></td>
+</tr>
+</tbody>
+</table></div>
+</section>
+
+  <p class="footer">Material didáctico · Rubén Pérez Ibáñez · IES Álvaro Falomir · 2026/27</p>
+</main>
+</body>
+</html>
