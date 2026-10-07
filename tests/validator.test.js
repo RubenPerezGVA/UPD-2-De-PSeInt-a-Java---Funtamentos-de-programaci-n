@@ -21,14 +21,23 @@ const tests=[
  System.out.println(anchoJunto);System.out.println(largoJunto);System.out.println(areaJunta);System.out.println(volumenJunto);
  double auxiliar=profA;profA=profB;profB=auxiliar;
  double volumenNuevoA=areaA*profA, volumenNuevoB=areaB*profB;
- System.out.println(volumenNuevoA);System.out.println(volumenNuevoB);`)]
+ System.out.println(volumenNuevoA);System.out.println(volumenNuevoB);`)],
+[12,wrap('int numero=dato.nextInt(); double decimal=dato.nextDouble(); double ancho=numero; int truncado=(int) decimal; String cadena=String.valueOf(decimal); System.out.println(ancho); System.out.println(truncado); System.out.println(cadena + " tiene " + cadena.length() + " caracteres");')],
+[12,wrap('int a=dato.nextInt(); double b=dato.nextDouble(); double a2=(double) a; int b2=(int)(b); String t="" + b; System.out.println(a2+" "+b2+" "+t+" "+t.length());')]
 ];
-assert.equal(exercises.length,11);
+assert.equal(exercises.length,12);
 for(const [id,src] of tests){const r=validate(id,src);assert.ok(r.complete,`Ejercicio ${id}: faltan ${r.results.filter(x=>!x.pass).map(x=>x.id).join(', ')}`);}
 const incomplete=validate(2,wrap('int uno=dato.nextInt();System.out.println(uno);'));
 assert.ok(!incomplete.complete&&incomplete.passed>0&&incomplete.passed<incomplete.total);
 const fake=validate(2,wrap('String p="dato.nextInt(); dato.nextInt(); System.out.println(7+9);"; // dato.nextInt();\n'));
 assert.ok(!fake.complete&&!fake.results.find(x=>x.id==='reads').pass&&!fake.results.find(x=>x.id==='shows').pass);
+const sinCast=validate(12,wrap('int a=dato.nextInt(); double b=dato.nextDouble(); double c=a; int d=Math.round(1); String t=String.valueOf(b); System.out.println(c+" "+t.length());'));
+assert.equal(sinCast.results.find(x=>x.id==='double-int').pass,false);
+const castComentado=validate(12,wrap('int a=dato.nextInt(); double b=dato.nextDouble(); double c=a; // int d=(int) b;\n String t=String.valueOf(b); System.out.println(c+" "+t.length());'));
+assert.equal(castComentado.results.find(x=>x.id==='double-int').pass,false);
+const sinTexto=validate(12,wrap('int a=dato.nextInt(); double b=dato.nextDouble(); double c=a; int d=(int) b; System.out.println(c+" "+d);'));
+assert.ok(!sinTexto.complete&&!sinTexto.results.find(x=>x.id==='double-string').pass&&!sinTexto.results.find(x=>x.id==='length').pass);
+assert.equal(validate(12,exercises[11].template).complete,false);
 const noSwap=validate(6,wrap('int alfa=dato.nextInt(),beta=dato.nextInt();System.out.println(beta);System.out.println(alfa);'));
 assert.equal(noSwap.results.find(x=>x.id==='swap').pass,false);
 console.log(`PRUEBAS OK: ${tests.length} soluciones variadas completas, validación parcial, comentarios/literales y ausencia de intercambio.`);

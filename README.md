@@ -8,7 +8,7 @@
 
 **Contenidos:** del pseudocódigo a Java, IntelliJ IDEA, estructura de un programa, variables, tipos primitivos, literales y constantes, operadores, conversiones de tipo, entrada con `Scanner`, salida con formato y métodos estáticos de `Math`.
 
-Web estática basada en la dinámica del proyecto `pseint-1daw`, adaptada a Java y a los **11 ejercicios** de «Introducción a Java. Sentencias simples» (10 ejercicios y uno de ampliación). Incluye la teoría PDF de «Elementos básicos del lenguaje» como material complementario.
+Web estática basada en la dinámica del proyecto `pseint-1daw`, adaptada a Java y a los **11 ejercicios** de «Introducción a Java. Sentencias simples» (10 ejercicios y uno de ampliación), más un ejercicio 12 básico de conversiones de tipo (*casting*: int → double, double → int y double → String). Incluye la teoría PDF de «Elementos básicos del lenguaje» como material complementario.
 
 ## Utilización y publicación
 
@@ -30,7 +30,7 @@ Web estática basada en la dinámica del proyecto `pseint-1daw`, adaptada a Java
 - Acepta variables, nombres de clase y mensajes distintos, `Scanner` y `BufferedReader` para entradas; permite sumar o multiplicar en asignaciones o directamente en salidas; admite Java clásico y el formato compacto de **Java 25 y 26** (`void main()` sin clase, `IO.println`/`IO.print` e `IO.readln`, `var`); la salida es libre: basta con al menos un `System.out` (varios `println`, uno solo con todo junto o `printf`, en cualquier orden); ofrece un resultado **parcial** por criterio sin exigir el mismo código que una solución modelo.
 - La comprobación no compila Java, no ejecuta los programas ni verifica su resultado con casos de prueba. **Puede dar falsos positivos o falsos negativos** ante código semánticamente erróneo o soluciones alternativas. El docente puede revisar el archivo `.java` en IntelliJ y comprobar ejecución y resultados. El justificante solo refleja el análisis local en el instante de su generación y no incluye autenticación, firma ni validación remota.
 - Al editar un ejercicio se invalida su resultado anterior; al generar un justificante se recalculan todos los criterios con el código que esté guardado. Los datos no salen del navegador ni se sincronizan entre dispositivos.
-- Se puede generar un justificante parcial o completo; únicamente muestra «Todos los ejercicios validados» cuando se han superado los 11 mediante las reglas heurísticas.
+- Se puede generar un justificante parcial o completo; únicamente muestra «Todos los ejercicios validados» cuando se han superado los 12 mediante las reglas heurísticas.
 
 ## Observación sobre el documento original
 
@@ -44,7 +44,7 @@ Con Node.js instalado, desde esta carpeta ejecuta:
 node tests/validator.test.js
 ```
 
-Se comprueban 11 soluciones con identificadores libres, un caso de validación parcial, ignorar comentarios/literales que contienen pseudocódigo aparente y detectar la ausencia de intercambio real en el ejercicio 6.
+Se comprueban 13 soluciones con identificadores libres (dos del ejercicio de casting), un caso de validación parcial, ignorar comentarios/literales que contienen pseudocódigo aparente y detectar la ausencia de intercambio real en el ejercicio 6.
 
 ## Ampliación (`ampliacion.html`)
 
@@ -68,10 +68,10 @@ Ficha de la **UP2** en la programación del módulo 0485 (1.º DAW): 24 h · 1.�
 
 | Código | Actividad | Criterios de evaluación |
 |---|---|---|
-| **P2.1** | Java paso a paso: 11 ejercicios de sentencias simples traducidos desde PSeInt (E/S, áreas y perímetros, `Math.PI`, intercambio de variables, ventas, IVA, conversiones) (web autovalidada + justificante) y ficheros `.java`. | RA1 a, b, c, d, e, f, g, h, i; RA2 b, e, g, i; RA5 a, b |
-| R2.1 | Refuerzo: Ejercicios resueltos y propuestos de la teoría de elementos básicos de Java y ejemplos de la guía de la UP2, rehechos con otros datos. | RA1 d, e, h; RA5 a |
+| **P2.1** | Java paso a paso: 12 ejercicios de sentencias simples traducidos desde PSeInt (E/S, áreas y perímetros, `Math.PI`, intercambio de variables, ventas, IVA, conversiones de unidades y de tipo con *casting*) (web autovalidada + justificante) y ficheros `.java`. | RA1 a, b, c, d, e, f, g, h, i; RA2 b, e, g, i; RA5 a, b |
+| R2.1 | Refuerzo: Ejercicios resueltos y propuestos de la teoría de elementos básicos de Java y ejemplos de la guía de la UP2, rehechos con otros datos. | RA1 d, e, h; RA2 b; RA5 a |
 | A2.1 | Ampliación: Variantes de los ejercicios con salida formateada (`printf`) y cálculos con `Math` (redondeo, potencias, raíces). | RA1 g, h; RA2 e; RA5 b |
 | **P2.2** | Ampliación de sentencias simples: 12 retos (división entera y resto, fórmulas, `final` y `Math`) (web autovalidada + justificante). | RA1 e, f, g, h; RA2 b, e, i; RA5 a, b |
-| R2.2 | Refuerzo: Retos de división entera y resto (tiempo, cajero) partiendo de la plantilla con pistas («Recuperar plantilla») y corrección por criterios del validador. | RA1 e, g; RA5 a |
+| R2.2 | Refuerzo: Retos de división entera y resto (tiempo, cajero) partiendo de la plantilla con pistas («Recuperar plantilla») y corrección por criterios del validador. | RA1 e, g; RA2 b; RA5 a |
 | A2.2 | Ampliación: Desglose de un importe con céntimos en billetes y monedas: conversión `double`→`int` y redondeo, constantes `final` y salida con formato. | RA1 f, g, h; RA2 e; RA5 b |
 <!-- END programacion-0485 -->
