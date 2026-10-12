@@ -61,6 +61,23 @@ Segunda página con **12 retos nuevos** del mismo nivel (solo sentencias simples
 
 ---
 
+## Refuerzo y ampliación (actividades opcionales)
+
+Cuatro actividades **opcionales e independientes**, con la misma dinámica que las prácticas (pistas en la plantilla, autovalidación por criterios, justificante y exportación) y su propio progreso guardado en el navegador. La portada es `refuerzo-ampliacion.html`, enlazada de forma discreta desde el pie de `index.html` y `ampliacion.html`. Cada página muestra los RA que trabaja y el aviso «Actividad opcional».
+
+| Código | Página | Validador | Prueba | Ejercicios | RA (CE) |
+|---|---|---|---|---|---|
+| R2.1 · Refuerzo de la P2.1 | `refuerzo1.html` | `validator-r1.js` | `tests/refuerzo1.test.js` | 6 (Saludo2, Opera2, Millas, Relacional, Circunferencia y «Pagos» de la teoría, con otros datos) | RA1 (d, e, h), RA2 (b), RA5 (a) |
+| A2.1 · Ampliación de la P2.1 | `ampliacion1.html` | `validator-a1.js` | `tests/ampliacion1.test.js` | 5 (ticket con `printf`, redondeos de `Math`, interés compuesto, ecuación de segundo grado, cubo con `cbrt`) | RA1 (g, h), RA2 (e), RA5 (b) |
+| R2.2 · Refuerzo de la P2.2 | `refuerzo2.html` | `validator-r2.js` | `tests/refuerzo2.test.js` | 5 (semanas y días, días/h/min/s, cambio en monedas, reloj, huevos y palés) | RA1 (e, g), RA2 (b), RA5 (a) |
+| A2.2 · Ampliación de la P2.2 | `ampliacion2.html` | `validator-a2.js` | `tests/ampliacion2.test.js` | 5 (céntimos truncados/redondeados, euros y céntimos, billetes y monedas, cambio de una compra, retirada con comisión) | RA1 (f, g, h), RA2 (e), RA5 (b) |
+
+- Cada validador reutiliza el analizador de `validator.js` (se carga antes) y `app.js` lee su configuración (`storageKey` `falomir_up2_r1_2026_27_v1`, `a1`, `r2`, `a2`; título de actividad `UP2 · R2.1 · Refuerzo (opcional) · …`; prefijos del justificante y de los archivos).
+- Para la entrega en Aules: justificante en PDF y ZIP con los archivos `.java`, como en las prácticas.
+- Pruebas: cada `tests/<actividad>.test.js` compila con `javac` y ejecuta una solución correcta por ejercicio (más variantes), comprueba que todas las plantillas quedan incompletas y varios casos negativos. `tests/_javac.js` es la utilidad común. Para ejecutarlas todas: `for t in tests/*.test.js; do node $t; done`.
+
+---
+
 <!-- BEGIN programacion-0485 (generado con gen/sync_ideaprojects.py desde gen/data.py; no editar a mano) -->
 ## Relación con la programación didáctica 2026-27
 
