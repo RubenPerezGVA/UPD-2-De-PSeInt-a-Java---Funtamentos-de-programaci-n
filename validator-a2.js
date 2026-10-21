@@ -49,7 +49,7 @@
   const fmt = rx => a => printf(a) && rx.test(nc(a));
   const stringShown = a => [...a.s.matchAll(/\bString\s+([A-Za-z_$][\w$]*)/g)].some(m=>a.rawOutputs.some(o=>new RegExp('\\b'+m[1]+'\\b').test(o)));
 
-  const structure = c('structure','Tiene un método main (clásico con class y static, o compacto de Java 25/26: void main()) y llaves y paréntesis equilibrados.',a=>(/\bstatic\b[\s\S]{0,45}\bvoid\s+main\s*\(/.test(a.s)||/(?:^|[;{}\s])void\s+main\s*\(\s*(?:String\s*(?:\[\s*\]|\.\.\.)\s*[A-Za-z_$][\w$]*\s*)?\)/.test(a.s))&&balanced(a.s,'{','}')&&balanced(a.s,'(',')'));
+  const structure = c('structure','Tiene un método main (cualquier forma: clásica, String args[], String..., sin public o compacta de Java 25/26).',a=>/\bmain\s*\(/i.test(a.s));
   const reads = k => c('reads',`Lee ${k===1?'el dato solicitado':`al menos ${k} datos`} desde teclado.`,a=>a.readCalls>=k);
   // Salida libre: basta con mostrar los resultados, en el orden y formato que se quiera.
   const shows = label => c('shows',label||'Muestra los resultados pedidos (orden y formato libres).',a=>a.outputs>=1);

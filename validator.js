@@ -61,7 +61,7 @@
     const printValue=outputs>0 && /\b(?:System\s*\.\s*out|IO)\s*\.\s*(?:print|println|printf|format)\s*\(\s*(?!\s*\))/m.test(s);
     return {source:String(source||''),s,outputs,rawOutputs,readCalls,readTargets,assignments,mathAssignments,calc,opCount,hasNum,numbers,printValue};
   }
-  const structure = c('structure','Tiene un método main (clásico con class y static, o compacto de Java 25/26: void main()) y llaves y paréntesis equilibrados.',a=>(/\bstatic\b[\s\S]{0,45}\bvoid\s+main\s*\(/.test(a.s)||/(?:^|[;{}\s])void\s+main\s*\(\s*(?:String\s*(?:\[\s*\]|\.\.\.)\s*[A-Za-z_$][\w$]*\s*)?\)/.test(a.s))&&balanced(a.s,'{','}')&&balanced(a.s,'(',')'));
+  const structure = c('structure','Tiene un método main (cualquier forma: clásica, String args[], String..., sin public o compacta de Java 25/26).',a=>/\bmain\s*\(/i.test(a.s));
   const reads = n => c('reads',`Lee ${n===1?'el dato solicitado':`al menos ${n} datos`} desde teclado.`,a=>a.readCalls>=n);
   const shows = n => c('shows',n===1?'Muestra el resultado mediante System.out.':`Incluye la salida de los resultados (orden y formato libres).`,a=>a.outputs>=1);
   const op = (name,label) => c('op-'+name,label,a=>a.opCount(name)>0);

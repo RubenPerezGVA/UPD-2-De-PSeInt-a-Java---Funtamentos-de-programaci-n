@@ -32,7 +32,7 @@
   const c = (id, label, test) => ({id,label,test});
   function balanced(s,open,close){let n=0;for(const ch of s){if(ch===open)n++;if(ch===close&&--n<0)return false;}return n===0;}
 
-  const structure = c('structure','Tiene un método main (clásico con class y static, o compacto de Java 25/26: void main()) y llaves y paréntesis equilibrados.',a=>(/\bstatic\b[\s\S]{0,45}\bvoid\s+main\s*\(/.test(a.s)||/(?:^|[;{}\s])void\s+main\s*\(\s*(?:String\s*(?:\[\s*\]|\.\.\.)\s*[A-Za-z_$][\w$]*\s*)?\)/.test(a.s))&&balanced(a.s,'{','}')&&balanced(a.s,'(',')'));
+  const structure = c('structure','Tiene un método main (cualquier forma: clásica, String args[], String..., sin public o compacta de Java 25/26).',a=>/\bmain\s*\(/i.test(a.s));
   const reads = n => c('reads',`Lee ${n===1?'el dato solicitado':`al menos ${n} datos`} desde teclado.`,a=>a.readCalls>=n);
   // Salida libre: basta con mostrar los resultados, en el orden y formato que se quiera (uno o varios print/println/printf).
   const shows = (n,label) => c('shows',label||'Muestra los resultados pedidos (orden y formato libres).',a=>a.outputs>=1);
