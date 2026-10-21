@@ -77,6 +77,10 @@
 <td>7 y 8</td>
 </tr>
 <tr class="odd">
+<td>Entender el <em>casting</em> (int, double, String)</td>
+<td>8</td>
+</tr>
+<tr class="even">
 <td>Leer datos sin errores raros</td>
 <td>10</td>
 </tr>
@@ -120,7 +124,7 @@
 <td></td>
 </tr>
 <tr class="even">
-<td><code>Definir nombre Como Caracter</code></td>
+<td><code>Definir nombre Como Cadena</code></td>
 <td><code>String nombre;</code></td>
 <td><code>String</code> empieza por mayúscula.</td>
 </tr>
@@ -172,6 +176,38 @@
 <li><strong>Ejecución.</strong> La máquina virtual de Java (JVM) ejecuta ese <em>bytecode</em>. Por eso el mismo programa funciona en Windows, macOS o Linux.</li>
 </ol>
 <p>IntelliJ hace ambos pasos cuando pulsas el botón ▶ <em>Run</em>. Si hay un error de compilación, el programa <strong>no llega a ejecutarse</strong>: el IDE subraya en rojo la línea y muestra un mensaje en la parte inferior.</p>
+</section>
+<section id="un-algoritmo-traducido" class="level3">
+<h3>1.2. Un algoritmo traducido paso a paso</h3>
+<p>Este es el algoritmo de la suma de la UP1 y su versión en Java. Fíjate en que la estructura (declarar, leer, calcular, mostrar) es idéntica:</p>
+<div class="grid2"><div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode"><code class="sourceCode"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Algoritmo Suma</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    Definir a, b, resultado Como Entero;</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    Escribir &quot;Primer número:&quot;;</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    Leer a;</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    Escribir &quot;Segundo número:&quot;;</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    Leer b;</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    resultado &lt;- a + b;</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    Escribir &quot;La suma es &quot;, resultado;</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>FinAlgoritmo</span></code></pre></div>
+</div><div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Scanner</span><span class="op">;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Suma <span class="op">{</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Scanner</span> teclado <span class="op">=</span> <span class="kw">new</span> <span class="bu">Scanner</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">in</span><span class="op">);</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Primer número: &quot;</span><span class="op">);</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> a <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextInt</span><span class="op">();</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Segundo número: &quot;</span><span class="op">);</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> b <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextInt</span><span class="op">();</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> resultado <span class="op">=</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;La suma es &quot;</span> <span class="op">+</span> resultado<span class="op">);</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div></div>
+<p>Si tecleas 3 y 4, el programa muestra <code>La suma es 7</code>. Diferencias a notar: el <code>Scanner</code> (que en PSeInt no hacía falta crear), el tipo delante de cada variable, el <code>;</code> en todas las líneas y que <code>print</code> no salta de línea (como <code>Escribir Sin Saltar</code>) mientras que <code>println</code> sí (como <code>Escribir</code>). Aún no hay condicionales ni bucles: llegarán en la UP3, y de momento todo el código va dentro de <code>main</code> (los métodos propios llegan en la UP4).</p>
 </section>
 </section>
 <section id="intellij-idea-tu-primer-proyecto" class="level2">
@@ -281,7 +317,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>De momento, copia la cabecera de <code>main</code> tal cual. En las UP4 y UP5 entenderás qué significan <code>static</code>, <code>void</code> y <code>String[] args</code>.</p>
+<p>De momento, copia la cabecera de <code>main</code> tal cual. Más adelante (métodos en la UP4, clases y objetos en la UP5) entenderás qué significan <code>static</code>, <code>void</code> y <code>String[] args</code>.</p>
 </section>
 <section id="forma-compacta-java-25-y-posteriores" class="level3">
 <h3>3.2. Forma compacta (Java 25 y posteriores)</h3>
@@ -293,6 +329,24 @@
 <p>Es útil para los primeros ejercicios, y la web de la UP2 la acepta. Aun así, en clase usaremos sobre todo la forma clásica, porque es la que encontrarás en la mayoría de proyectos y la que necesitaremos cuando trabajemos con objetos.</p>
 <div class="callout warn"><strong class="t">Cuidado</strong>
 <p>La forma compacta solo funciona con un JDK 25 o superior. Si IntelliJ marca error en <code>void main()</code>, revisa en <em>File → Project Structure → Project</em> que el SDK y el <em>Language level</em> sean 25.</p>
+</div>
+</section>
+<section id="paquetes-y-orden-del-archivo" class="level3">
+<h3>3.3. Paquetes y orden de un archivo</h3>
+<p>Un <strong>paquete</strong> es una carpeta lógica que agrupa clases relacionadas (como <code>java.util</code>, donde vive <code>Scanner</code>). En un proyecto propio se declara con <code>package</code> en la <strong>primera línea</strong> del archivo y el nombre debe coincidir con la carpeta dentro de <code>src</code>. Si creas la clase directamente en <code>src</code>, queda en el <em>paquete por defecto</em> y no hace falta escribir nada. En esta unidad es lo habitual; en la UP6 organizaremos las clases en paquetes propios.</p>
+<p>El orden dentro de un archivo es siempre el mismo: primero <code>package</code> (si lo hay), luego los <code>import</code> y después la clase.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span> ejercicios<span class="op">.</span><span class="fu">up2</span><span class="op">;</span>      <span class="co">// el archivo está en src/ejercicios/up2/</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Scanner</span><span class="op">;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Saludo <span class="op">{</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Hola&quot;</span><span class="op">);</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Las clases de <code>java.lang</code> (<code>String</code>, <code>System</code>, <code>Math</code>, <code>Integer</code>…) se importan solas; <code>Scanner</code> (<code>java.util</code>) no, por eso necesita su <code>import</code>.</p>
+<div class="callout warn"><strong class="t">Error típico</strong>
+<p>Llamar al archivo <code>saludo.java</code> y a la clase <code>Saludo</code>, o poner la instrucción fuera de <code>main</code>. Java exige que el nombre del archivo coincida exactamente con el de la clase pública, mayúsculas incluidas.</p>
 </div>
 </section>
 </section>
@@ -309,6 +363,17 @@
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Comentario de documentaci<span class="co">ó</span>n <span class="co">(</span>Javadoc<span class="co">).</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Se usa para documentar clases y m<span class="co">é</span>todos<span class="co">.</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span></code></pre></div>
+<p>El comentario <strong>Javadoc</strong> (<code>/** … */</code>) se coloca justo antes de una clase o método y admite etiquetas como <code>@author</code> o <code>@version</code>. IntelliJ lo muestra al pasar el ratón (Ctrl + Q) y la herramienta <code>javadoc</code> genera con ellos la documentación HTML (lo haremos en la UP6). Los demás comentarios los ignora el compilador.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Calcula el precio de un producto con IVA.</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"> * @author Tu nombre</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * @version 1.0</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> PrecioConIva <span class="op">{</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// aquí iría el código</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Comenta el <strong>porqué</strong> y no lo evidente. <code>// suma 1 a i</code> no aporta nada; <code>// el primer día del mes es el 1, no el 0</code> sí.</p>
 </section>
 <section id="identificadores" class="level3">
@@ -432,11 +497,14 @@
 </section>
 <section id="el-tipo-string" class="level3">
 <h3>5.2. El tipo <code>String</code></h3>
-<p><code>String</code> no es un tipo primitivo, sino una <strong>clase</strong> que representa cadenas de texto. Se escribe con comillas dobles; un <code>char</code> va entre comillas simples.</p>
+<p><code>String</code> no es un tipo primitivo, sino una <strong>clase</strong> que representa cadenas de texto (por eso empieza por mayúscula). Se escribe con comillas dobles; un <code>char</code> va entre comillas simples.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> ciclo <span class="op">=</span> <span class="st">&quot;DAW&quot;</span><span class="op">;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> grupo <span class="op">=</span> <span class="ch">&#39;A&#39;</span><span class="op">;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> mensaje <span class="op">=</span> <span class="st">&quot;Estudio &quot;</span> <span class="op">+</span> ciclo <span class="op">+</span> <span class="st">&quot; en el grupo &quot;</span> <span class="op">+</span> grupo<span class="op">;</span></span></code></pre></div>
-<p>El operador <code>+</code> con un <code>String</code> <strong>concatena</strong>: une textos y convierte a texto los números que encuentre.</p>
+<p>El operador <code>+</code> con un <code>String</code> <strong>concatena</strong>: une textos y convierte a texto los números que encuentre. Un <code>String</code> sabe cuántos caracteres tiene: <code>ciclo.length()</code> devuelve <code>3</code> y <code>"".length()</code> devuelve <code>0</code>.</p>
+<div class="callout"><strong class="t">Límites y precisión</strong>
+<p>Un <code>int</code> llega hasta <code>Integer.MAX_VALUE</code> (2147483647). Si te pasas, Java <strong>no avisa</strong>: el número «da la vuelta» y <code>Integer.MAX_VALUE + 1</code> vale <code>-2147483648</code>. Para valores mayores usa <code>long</code>. Por otro lado, los <code>double</code> son aproximados: <code>0.1 + 0.2</code> da <code>0.30000000000000004</code>. Por eso se muestran con <code>printf("%.2f")</code> y no se comparan con <code>==</code>.</p>
+</div>
 </section>
 <section id="qué-tipo-elijo" class="level3">
 <h3>5.3. ¿Qué tipo elijo?</h3>
@@ -481,6 +549,25 @@
 <section id="inferencia-con-var" class="level3">
 <h3>5.4. Inferencia con <code>var</code></h3>
 <p>Dentro de un método puedes escribir <code>var</code> y Java deduce el tipo por el valor inicial: <code>var total = 0.0;</code> crea un <code>double</code>. Úsalo solo cuando el tipo sea evidente; al principio es mejor escribir el tipo explícitamente.</p>
+</section>
+<section id="ámbito-de-una-variable" class="level3">
+<h3>5.5. Ámbito de una variable</h3>
+<p>El <strong>ámbito</strong> (<em>scope</em>) de una variable es la parte del programa donde existe y se puede usar: <strong>desde la línea donde se declara hasta la llave <code>}</code> que cierra el bloque</strong> en el que está. Una variable declarada en <code>main</code> vive hasta el final de <code>main</code>; una declarada dentro de unas llaves interiores desaparece al cerrarlas. Lo verás constantemente con <code>if</code> y <code>for</code> en la UP3; aquí lo vemos con un bloque simple:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Ambito <span class="op">{</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> total <span class="op">=</span> <span class="dv">10</span><span class="op">;</span>              <span class="co">// visible en todo main, desde esta línea</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            <span class="dt">int</span> temporal <span class="op">=</span> total <span class="op">*</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// solo existe dentro de este bloque</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>temporal<span class="op">);</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>total<span class="op">);</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// System.out.println(temporal);  // ERROR: cannot find symbol</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Salida:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode"><code class="sourceCode"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>20</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>10</span></code></pre></div>
+<p>Otras dos reglas relacionadas: no se puede declarar dos veces el mismo nombre en el mismo ámbito (<code>variable edad is already defined in method main(String[])</code>) y una variable local hay que <strong>darle un valor antes de usarla</strong> (<code>variable x might not have been initialized</code>).</p>
 </section>
 </section>
 <section id="constantes-y-literales" class="level2">
@@ -542,6 +629,9 @@
 </table></div>
 <p>En el código, el separador decimal <strong>siempre es el punto</strong>: <code>3.5</code>, nunca <code>3,5</code>.</p>
 </section>
+<div class="callout warn"><strong class="t">Errores típicos con literales</strong>
+<p><code>long grande = 3000000000;</code> falla con <code>integer number too large</code>: el literal es un <code>int</code> y no cabe; hay que escribir <code>3000000000L</code>. <code>float f = 3.14;</code> falla con <code>possible lossy conversion from double to float</code>: el literal decimal es un <code>double</code>; hay que escribir <code>3.14f</code>. Y <code>final int K = 1; K = 2;</code> da <code>cannot assign a value to final variable K</code>.</p>
+</div>
 </section>
 <section id="operadores-y-expresiones" class="level2">
 <h2>7. Operadores y expresiones</h2>
@@ -709,31 +799,256 @@
 <h3>7.5. Precedencia</h3>
 <p>De mayor a menor prioridad: paréntesis → <code>++ -- !</code> → <code>* / %</code> → <code>+ -</code> → relacionales → <code>==</code> <code>!=</code> → <code>&amp;&amp;</code> → <code>||</code> → asignaciones. Ante la duda, <strong>usa paréntesis</strong>: <code>(a + b) / 2</code> no es lo mismo que <code>a + b / 2</code>.</p>
 </section>
+<section id="ejemplos-de-expresiones" class="level3">
+<h3>7.6. Ejemplos de expresiones evaluadas</h3>
+<p>Con <code>int a = 7, b = 2;</code> estos son los resultados reales:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Expresión</th>
+<th>Resultado</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>a / b</code></td>
+<td><code>3</code></td>
+<td>Entero entre entero: se descartan los decimales</td>
+</tr>
+<tr class="even">
+<td><code>a % b</code></td>
+<td><code>1</code></td>
+<td>7 = 3·2 + 1</td>
+</tr>
+<tr class="odd">
+<td><code>a + b / 2</code></td>
+<td><code>8</code></td>
+<td>Primero <code>b / 2</code> = 1 y después 7 + 1</td>
+</tr>
+<tr class="even">
+<td><code>(a + b) / 2</code></td>
+<td><code>4</code></td>
+<td>9 / 2 con enteros</td>
+</tr>
+<tr class="odd">
+<td><code>-7 / 2</code> y <code>-7 % 2</code></td>
+<td><code>-3</code> y <code>-1</code></td>
+<td>La división entera trunca hacia cero; el resto toma el signo del dividendo</td>
+</tr>
+<tr class="even">
+<td><code>7.0 / 0</code></td>
+<td><code>Infinity</code></td>
+<td>Con decimales no hay error: sale infinito</td>
+</tr>
+<tr class="odd">
+<td><code>7 / 0</code></td>
+<td>excepción</td>
+<td>Con enteros el programa se detiene: <code>ArithmeticException: / by zero</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Y un ejemplo de incremento: observa en qué momento cambia cada variable.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> y <span class="op">=</span> x<span class="op">++;</span>      <span class="co">// y recibe 5 y después x pasa a 6</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> z <span class="op">=</span> <span class="op">++</span>x<span class="op">;</span>      <span class="co">// x pasa a 7 y después z recibe 7</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>x <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> y <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> z<span class="op">);</span></span></code></pre></div>
+<p>Salida:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode"><code class="sourceCode"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>7 5 7</span></code></pre></div>
+</section>
 </section>
 <section id="conversiones-de-tipo" class="level2">
 <h2>8. Conversiones de tipo</h2>
+<p>Un dato tiene un tipo y a veces necesitamos verlo con otro: usar un <code>int</code> en una cuenta con decimales, quedarnos con la parte entera de un <code>double</code>, mostrar un número como texto o convertir en número lo que el usuario ha escrito. Este apartado explica las cuatro situaciones, empezando por la regla general: <strong>si no se pierde información, Java convierte solo; si se puede perder, hay que pedirlo expresamente</strong> con un <em>casting</em>.</p>
 <section id="conversión-implícita-ampliación" class="level3">
 <h3>8.1. Conversión implícita (ampliación)</h3>
-<p>Java convierte automáticamente de un tipo «pequeño» a otro «grande» porque no se pierde información: <code>int → long → float → double</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> unidades <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> precioUnitario <span class="op">=</span> <span class="fl">2.5</span><span class="op">;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> total <span class="op">=</span> unidades <span class="op">*</span> precioUnitario<span class="op">;</span>   <span class="co">// el int se convierte en double: 7.5</span></span></code></pre></div>
+<p>Java convierte automáticamente de un tipo «pequeño» a otro «grande» porque no se pierde información. El orden es: <code>byte → short → int → long → float → double</code> (y <code>char → int</code>).</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> entero <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> d <span class="op">=</span> entero<span class="op">;</span>                  <span class="co">// el int se convierte en double</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>d<span class="op">);</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>entero <span class="op">/</span> <span class="dv">2</span><span class="op">);</span>     <span class="co">// int / int</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>entero <span class="op">/</span> <span class="fl">2.0</span><span class="op">);</span>   <span class="co">// int / double</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>entero <span class="op">*</span> <span class="fl">1.5</span><span class="op">);</span>   <span class="co">// int * double</span></span></code></pre></div>
+<p>Salida:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode"><code class="sourceCode"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>9.0</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>4</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>4.5</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>13.5</span></code></pre></div>
+<p>La conversión también ocurre dentro de las expresiones: cuando una operación mezcla un <code>int</code> y un <code>double</code>, Java convierte el <code>int</code> a <code>double</code> <strong>antes</strong> de operar y el resultado es <code>double</code>. Por eso <code>9 / 2.0</code> vale 4.5, mientras que <code>9 / 2</code>, con los dos operandos enteros, vale 4. Además, <code>byte</code>, <code>short</code> y <code>char</code> se convierten a <code>int</code> al operar con ellos.</p>
 </section>
 <section id="conversión-explícita-casting" class="level3">
 <h3>8.2. Conversión explícita (<em>casting</em>)</h3>
-<p>Para ir de un tipo grande a uno pequeño hay que indicarlo, porque se puede perder información:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> nota <span class="op">=</span> <span class="fl">7.8</span><span class="op">;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> notaEntera <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span> nota<span class="op">;</span>                <span class="co">// 7: se trunca, no se redondea</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> redondeada <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span><span class="op">(</span>nota<span class="op">);</span>         <span class="co">// 8</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> media <span class="op">=</span> <span class="op">(</span><span class="dt">double</span><span class="op">)</span> <span class="dv">15</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span>             <span class="co">// 7.5</span></span></code></pre></div>
+<p>Para ir de un tipo grande a uno pequeño hay que escribir el tipo de destino entre paréntesis delante del valor: <code>(int) valor</code>. Con ello le dices al compilador «sé que puedo perder información». Sin el casting, el código ni compila (<code>possible lossy conversion from double to int</code>).</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> real <span class="op">=</span> <span class="fl">2.75</span><span class="op">;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">int</span><span class="op">)</span> real<span class="op">);</span>            <span class="co">// se trunca, no se redondea</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">int</span><span class="op">)</span> <span class="op">-</span><span class="fl">2.75</span><span class="op">);</span>           <span class="co">// hacia cero</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="bu">Math</span><span class="op">.</span><span class="fu">round</span><span class="op">(</span>real<span class="op">));</span>      <span class="co">// redondeo al más cercano</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> redondeado <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span><span class="op">(</span>real<span class="op">);</span>   <span class="co">// Math.round devuelve long</span></span></code></pre></div>
+<p>Salida:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode"><code class="sourceCode"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>2</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>-2</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>3</span></code></pre></div>
+<p>Un <code>(int)</code> <strong>no redondea: elimina los decimales</strong> (3.99 pasa a 3). Si quieres redondear, usa <code>Math.round</code>, que devuelve un <code>long</code>, y si lo necesitas en un <code>int</code> hay que hacer otro casting, como en la última línea.</p>
+<h4>A qué afecta el casting</h4>
+<p>El casting se aplica solo a lo que tiene <strong>justo a su derecha</strong>. Por eso estas dos líneas son distintas:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a <span class="op">=</span> <span class="dv">7</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">double</span><span class="op">)</span> a <span class="op">/</span> b<span class="op">);</span>      <span class="co">// 3.5  (convierte a, luego divide)</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">double</span><span class="op">)</span> <span class="op">(</span>a <span class="op">/</span> b<span class="op">));</span>    <span class="co">// 3.0  (divide enteros y luego convierte)</span></span></code></pre></div>
+<p>Salida:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode"><code class="sourceCode"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>3.5</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>3.0</span></code></pre></div>
+<h4>Asignación compuesta y desbordamiento</h4>
+<p>Los operadores como <code>+=</code> incluyen un casting implícito: <code>int x = 5; x += 2.7;</code> compila y deja <code>x</code> en <code>7</code> (calcula 7.7 y trunca). En cambio <code>x = x + 2.7;</code> <strong>no compila</strong>. Y cuando el valor no cabe en el tipo de destino, el casting no avisa y el resultado es otro número:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> grande <span class="op">=</span> <span class="dv">3_000_000_000L</span><span class="op">;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">int</span><span class="op">)</span> grande<span class="op">);</span>   <span class="co">// no cabe en un int</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">byte</span><span class="op">)</span> <span class="dv">130</span><span class="op">);</span>     <span class="co">// un byte llega solo hasta 127</span></span></code></pre></div>
+<p>Salida:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode"><code class="sourceCode"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>-1294967296</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>-126</span></code></pre></div>
+</section>
+<section id="resumen-conversiones-int-double-string" class="level3">
+<h3>8.3. Resumen: int, double y String</h3>
+<p>Estas son las conversiones que más usarás en esta unidad. Las tres primeras filas son casting (o conversión automática); las demás usan métodos de clases predefinidas:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>De</th>
+<th>A</th>
+<th>Cómo se escribe</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>int</code></td>
+<td><code>double</code></td>
+<td>Automática: <code>double d = n;</code></td>
+<td>7 → <code>7.0</code></td>
+</tr>
+<tr class="even">
+<td><code>double</code></td>
+<td><code>int</code> (trunca)</td>
+<td>Casting: <code>int n = (int) x;</code></td>
+<td>3.99 → <code>3</code></td>
+</tr>
+<tr class="odd">
+<td><code>double</code></td>
+<td><code>int</code> (redondea)</td>
+<td><code>int n = (int) Math.round(x);</code></td>
+<td>3.99 → <code>4</code></td>
+</tr>
+<tr class="even">
+<td><code>int</code> / <code>double</code></td>
+<td><code>String</code></td>
+<td><code>String.valueOf(x)</code>, <code>Integer.toString(n)</code>, <code>Double.toString(x)</code> o <code>"" + x</code></td>
+<td>3.99 → <code>"3.99"</code></td>
+</tr>
+<tr class="odd">
+<td><code>double</code></td>
+<td><code>String</code> con formato</td>
+<td><code>String.format("%.2f", x)</code></td>
+<td>3.99 → <code>"3,99"</code> (según la región)</td>
+</tr>
+<tr class="even">
+<td><code>String</code></td>
+<td><code>int</code></td>
+<td><code>Integer.parseInt(s)</code></td>
+<td><code>"18"</code> → <code>18</code></td>
+</tr>
+<tr class="odd">
+<td><code>String</code></td>
+<td><code>double</code></td>
+<td><code>Double.parseDouble(s)</code></td>
+<td><code>"19.95"</code> → <code>19.95</code></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout warn"><strong class="t">Un String no se convierte con casting</strong>
+<p><code>(int) "18"</code> da <code>incompatible types: String cannot be converted to int</code>. El casting solo vale entre tipos numéricos (y <code>char</code>). Para pasar de texto a número hay que <em>interpretar</em> el texto, y para eso están los métodos <code>parseInt</code> y <code>parseDouble</code>. Del mismo modo, <code>int t = "5";</code> y <code>String t = 5;</code> no compilan.</p>
+</div>
+</section>
+<section id="de-número-a-texto" class="level3">
+<h3>8.4. De número a texto</h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> precio <span class="op">=</span> <span class="fl">19.5</span><span class="op">;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> t1 <span class="op">=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">valueOf</span><span class="op">(</span>precio<span class="op">);</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> t2 <span class="op">=</span> <span class="bu">Double</span><span class="op">.</span><span class="fu">toString</span><span class="op">(</span>precio<span class="op">);</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> t3 <span class="op">=</span> <span class="st">&quot;&quot;</span> <span class="op">+</span> precio<span class="op">;</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> t4 <span class="op">=</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">toString</span><span class="op">(</span><span class="dv">42</span><span class="op">);</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> t5 <span class="op">=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">format</span><span class="op">(</span><span class="st">&quot;%.2f&quot;</span><span class="op">,</span> precio<span class="op">);</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>t1 <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> t2 <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> t3 <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> t4 <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> t5<span class="op">);</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>t1<span class="op">.</span><span class="fu">length</span><span class="op">()</span> <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> t5<span class="op">.</span><span class="fu">length</span><span class="op">());</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;3&quot;</span> <span class="op">+</span> <span class="dv">4</span><span class="op">);</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="dv">3</span> <span class="op">+</span> <span class="dv">4</span><span class="op">);</span></span></code></pre></div>
+<p>Salida (en un ordenador configurado en español):</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode"><code class="sourceCode"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>19.5 19.5 19.5 42 19,50</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>4 5</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>34</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>7</span></code></pre></div>
+<p>Las tres primeras formas dan el mismo texto, <code>"19.5"</code>, siempre con punto. <code>String.format</code> funciona como <code>printf</code> pero <strong>devuelve</strong> el texto en lugar de mostrarlo, y usa la coma decimal en un equipo en español (por eso <code>t5</code> tiene 5 caracteres). Una vez convertido a <code>String</code> puedes preguntar su longitud con <code>length()</code>. Fíjate también en que <code>"3" + 4</code> es el texto <code>"34"</code>, mientras que <code>3 + 4</code> es el número 7.</p>
 </section>
 <section id="de-texto-a-número-y-de-número-a-texto" class="level3">
-<h3>8.3. De texto a número y de número a texto</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> edad <span class="op">=</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">parseInt</span><span class="op">(</span><span class="st">&quot;18&quot;</span><span class="op">);</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> precio <span class="op">=</span> <span class="bu">Double</span><span class="op">.</span><span class="fu">parseDouble</span><span class="op">(</span><span class="st">&quot;19.95&quot;</span><span class="op">);</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> texto <span class="op">=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">valueOf</span><span class="op">(</span><span class="dv">42</span><span class="op">);</span>          <span class="co">// &quot;42&quot;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> otro <span class="op">=</span> <span class="st">&quot;&quot;</span> <span class="op">+</span> <span class="fl">3.5</span><span class="op">;</span>                     <span class="co">// &quot;3.5&quot;</span></span></code></pre></div>
-<p>Si el texto no es un número válido (<code>"hola"</code>, <code>"19,95"</code>), <code>parseInt</code>/<code>parseDouble</code> lanzan una excepción y el programa se detiene. En la UP3 aprenderás a validar la entrada antes de convertir.</p>
+<h3>8.5. De texto a número</h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> edad <span class="op">=</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">parseInt</span><span class="op">(</span><span class="st">&quot;18&quot;</span><span class="op">);</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> precio <span class="op">=</span> <span class="bu">Double</span><span class="op">.</span><span class="fu">parseDouble</span><span class="op">(</span><span class="st">&quot;19.95&quot;</span><span class="op">);</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>edad <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>precio <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="bu">Integer</span><span class="op">.</span><span class="fu">parseInt</span><span class="op">(</span><span class="st">&quot;18&quot;</span><span class="op">)</span> <span class="op">+</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">parseInt</span><span class="op">(</span><span class="st">&quot;4&quot;</span><span class="op">));</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;18&quot;</span> <span class="op">+</span> <span class="st">&quot;4&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>Salida:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode"><code class="sourceCode"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>19</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>20.95</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>22</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>184</span></code></pre></div>
+<p>Las dos últimas líneas muestran la diferencia: sumar números (22) o <em>pegar textos</em> (184). Convertir a número es imprescindible antes de operar con un dato leído como <code>String</code> (por ejemplo, con <code>IO.readln</code> o <code>nextLine()</code>).</p>
+<p>Si el texto no es un número válido, <code>parseInt</code> y <code>parseDouble</code> lanzan una excepción (<code>NumberFormatException</code>) y el programa se detiene. Son errores típicos:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>Texto</th>
+<th>Resultado de <code>Integer.parseInt</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>"hola"</code></td>
+<td>Error: <code>For input string: "hola"</code></td>
+</tr>
+<tr class="even">
+<td><code>"3.5"</code></td>
+<td>Error: un <code>int</code> no admite decimales (usa <code>parseDouble</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>" 18"</code> (con espacio)</td>
+<td>Error. Se arregla con <code>Integer.parseInt(texto.trim())</code>, que quita los espacios de los extremos</td>
+</tr>
+<tr class="even">
+<td><code>""</code> (vacío)</td>
+<td>Error</td>
+</tr>
+<tr class="odd">
+<td><code>"19,95"</code> con <code>parseDouble</code></td>
+<td>Error: <code>parseDouble</code> espera <strong>punto</strong> decimal siempre</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cómo evitar el fallo comprobando antes el texto lo aprenderás en la UP3, cuando existan condicionales y bucles.</p>
+</section>
+<section id="char-y-números" class="level3">
+<h3>8.6. Caracteres y números</h3>
+<p>Un <code>char</code> guarda internamente un número (su código Unicode), así que se convierte fácilmente a <code>int</code> y al revés. No confundas el carácter <code>'7'</code> con el número 7:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> c <span class="op">=</span> <span class="ch">&#39;A&#39;</span><span class="op">;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> codigo <span class="op">=</span> c<span class="op">;</span>                       <span class="co">// conversión automática</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>codigo<span class="op">);</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>c <span class="op">+</span> <span class="dv">1</span><span class="op">);</span>            <span class="co">// char + int = int</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">((</span><span class="dt">char</span><span class="op">)</span> <span class="op">(</span>c <span class="op">+</span> <span class="dv">1</span><span class="op">));</span>   <span class="co">// casting de vuelta a char</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> siete <span class="op">=</span> <span class="ch">&#39;7&#39;</span><span class="op">;</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>siete <span class="op">-</span> <span class="ch">&#39;0&#39;</span><span class="op">);</span>      <span class="co">// de carácter-dígito a número</span></span></code></pre></div>
+<p>Salida:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode"><code class="sourceCode"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>65</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>66</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>B</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>7</span></code></pre></div>
+<p>La resta <code>'7' - '0'</code> funciona porque los dígitos están ordenados en la tabla de códigos (<code>'0'</code> es 48 y <code>'7'</code> es 55).</p>
 </section>
 </section>
 <section id="salida-por-pantalla" class="level2">
@@ -819,8 +1134,27 @@
 </tr>
 </tbody>
 </table></div>
+<p>Con los datos del ejemplo anterior la salida es (en un equipo en español):</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode"><code class="sourceCode"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>Teclado      2 uds.    51,00 €</span></code></pre></div>
+<p>Cada especificador consume un argumento <strong>en orden</strong> y debe corresponder a su tipo. También hay relleno con ceros: <code>%05d</code> con 42 da <code>00042</code>, y <code>%5d</code> da <code>   42</code>.</p>
 <div class="callout"><strong class="t">Decimales con coma</strong>
 <p><code>printf</code> usa la configuración regional del ordenador. En un equipo configurado en español verás <code>51,00</code> en lugar de <code>51.00</code>. Es correcto: es solo la forma de mostrarlo.</p>
+</div>
+</section>
+<section id="stringformat-y-errores-de-formato" class="level3">
+<h3>9.4. <code>String.format</code> y errores de formato</h3>
+<p><code>String.format</code> usa exactamente los mismos especificadores que <code>printf</code>, pero en vez de escribir en pantalla <strong>devuelve un <code>String</code></strong> que puedes guardar o reutilizar:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> linea <span class="op">=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">format</span><span class="op">(</span><span class="st">&quot;%s: %.2f €&quot;</span><span class="op">,</span> <span class="st">&quot;Total&quot;</span><span class="op">,</span> <span class="fl">121.0</span><span class="op">);</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>linea<span class="op">);</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">&quot;%s mide %.1f m y tiene %d años%n&quot;</span><span class="op">,</span> <span class="st">&quot;Ana&quot;</span><span class="op">,</span> <span class="fl">1.7</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Con concatenación: &quot;</span> <span class="op">+</span> <span class="fl">1.75</span><span class="op">);</span></span></code></pre></div>
+<p>Salida (equipo en español):</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode"><code class="sourceCode"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>Total: 121,00 €</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>Ana mide 1,7 m y tiene 20 años</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>Con concatenación: 1.75</span></code></pre></div>
+<p>Observa la diferencia: <code>printf</code> y <code>String.format</code> usan la coma decimal de la región, mientras que concatenar con <code>+</code> muestra <strong>siempre</strong> el punto.</p>
+<div class="callout warn"><strong class="t">Error típico</strong>
+<p>Usar un especificador que no corresponde al tipo. <code>System.out.printf("%d", 2.5)</code> falla al ejecutar con <code>IllegalFormatConversionException: d != java.lang.Double</code> y <code>printf("%.2f", 3)</code> con <code>f != java.lang.Integer</code>. Usa <code>%d</code> para enteros y <code>%f</code> para decimales. Otro error frecuente es olvidar <code>%n</code> (o <code>println</code>) y que todo salga en la misma línea.</p>
 </div>
 </section>
 </section>
@@ -875,6 +1209,12 @@
 </tbody>
 </table></div>
 <p>La línea <code>import java.util.Scanner;</code> va al principio del archivo, antes de la clase. IntelliJ la añade sola si pulsas Alt + Intro sobre <code>Scanner</code>.</p>
+<p>Ejemplo de ejecución del programa anterior (lo que escribe el usuario va en la entrada; la altura se teclea con coma porque el equipo está en español):</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode"><code class="sourceCode"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>Nombre: Ana Pérez</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>Edad: 20</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>Altura en metros: 1,75</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>Ana Pérez tiene 20 años y mide 1.75 m</span></code></pre></div>
+<p>Fíjate en que al mostrar la altura con <code>+</code> aparece el punto (<code>1.75</code>), aunque se tecleó con coma: la lectura depende de la región, la concatenación no. También puedes teclear varios números en una línea separados por espacios (<code>3 4</code>) cuando haces dos llamadas seguidas a <code>nextInt()</code>.</p>
 </section>
 <section id="trampa-1-nextint-seguido-de-nextline" class="level3">
 <h3>10.2. Trampa 1: <code>nextInt()</code> seguido de <code>nextLine()</code></h3>
@@ -900,6 +1240,7 @@
 <section id="la-clase-math" class="level2">
 <h2>11. La clase <code>Math</code></h2>
 <p><code>Math</code> agrupa funciones matemáticas listas para usar. No hace falta <code>import</code>.</p>
+<p>Son <strong>métodos estáticos</strong>: pertenecen a la clase y se llaman escribiendo <code>Clase.método(...)</code>, <strong>sin crear ningún objeto</strong> con <code>new</code>. Ya has usado más: <code>Integer.parseInt</code>, <code>Double.parseDouble</code> y <code>String.valueOf</code>. Compáralo con <code>teclado.nextInt()</code>, que no es estático: necesita el objeto <code>teclado</code> que creamos con <code>new Scanner(...)</code>. Además, <code>Math.PI</code> no es un método sino una <strong>constante estática</strong> (sin paréntesis). Cómo se crean tus propios métodos estáticos lo verás en la UP4.</p>
 <div class="table-wrap"><table>
 <colgroup>
 <col style="width: 33%" />
@@ -956,7 +1297,11 @@
 </tr>
 </tbody>
 </table></div>
-<p>Para redondear a dos decimales: <code>Math.round(valor * 100) / 100.0</code>.</p>
+<p>Para redondear a dos decimales: <code>Math.round(valor * 100) / 100.0</code>. Por ejemplo, con <code>3.14159</code>: <code>valor * 100</code> es 314.159, <code>Math.round</code> da 314 y <code>314 / 100.0</code> da <code>3.14</code> (el <code>100.0</code> evita la división entera).</p>
+<p>Detalles que conviene conocer: <code>Math.round(2.5)</code> es 3 pero <code>Math.round(-2.5)</code> es <code>-2</code> (redondea hacia arriba en los empates); <code>Math.floor(-2.5)</code> es <code>-3.0</code> y <code>Math.ceil(-2.5)</code> es <code>-2.0</code>; <code>Math.max(3, 9.5)</code> devuelve <code>9.5</code> (un <code>double</code>) y <code>Math.sqrt(2)</code> es <code>1.4142135623730951</code>.</p>
+<div class="callout warn"><strong class="t">Error típico</strong>
+<p>Guardar el resultado de <code>Math</code> en un <code>int</code> sin casting. <code>int r = Math.round(2.5);</code> no compila (<code>possible lossy conversion from long to int</code>, porque <code>round</code> con un <code>double</code> devuelve <code>long</code>) y <code>int p = Math.pow(2, 3);</code> tampoco (<code>pow</code> siempre devuelve <code>double</code>). Soluciones: <code>int r = (int) Math.round(2.5);</code> y <code>int p = (int) Math.pow(2, 3);</code> (vale 8).</p>
+</div>
 <section id="ejemplo-área-y-perímetro-de-un-círculo" class="level3 practice">
 <h3>Ejemplo: área y perímetro de un círculo</h3>
 <p><strong>Entrada:</strong> el radio. <strong>Proceso:</strong> área = π·r², perímetro = 2·π·r. <strong>Salida:</strong> ambos valores con 2 decimales.</p>
@@ -1057,6 +1402,30 @@
 <td><code>NumberFormatException</code></td>
 <td><code>parseInt</code>/<code>parseDouble</code> con un texto que no es un número.</td>
 </tr>
+<tr class="odd">
+<td><code>integer number too large</code></td>
+<td>Literal entero mayor que un <code>int</code>: añade <code>L</code> (<code>3000000000L</code>) y usa <code>long</code>.</td>
+</tr>
+<tr class="even">
+<td><code>incompatible types: String cannot be converted to int</code> (o <code>int cannot be converted to String</code>)</td>
+<td>Mezclas texto y número en una asignación. Convierte con <code>parseInt</code> o <code>String.valueOf</code>; un <em>casting</em> no sirve.</td>
+</tr>
+<tr class="odd">
+<td><code>variable edad is already defined in method main(String[])</code></td>
+<td>Declaras dos veces el mismo nombre en el mismo ámbito.</td>
+</tr>
+<tr class="even">
+<td><code>cannot assign a value to final variable IVA</code></td>
+<td>Intentas cambiar una constante.</td>
+</tr>
+<tr class="odd">
+<td><code>ArithmeticException: / by zero</code></td>
+<td>División o resto entre enteros con divisor 0.</td>
+</tr>
+<tr class="even">
+<td><code>IllegalFormatConversionException</code></td>
+<td>Especificador de <code>printf</code> que no corresponde al tipo del argumento (<code>%d</code> con un decimal).</td>
+</tr>
 </tbody>
 </table></div>
 </section>
@@ -1156,12 +1525,70 @@
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p><strong>Prueba:</strong> 3725 → <code>1 h 2 min 5 s</code>.</p>
 </section>
+<section id="conversiones-de-tipo-paso-a-paso" class="level3">
+<h3>13.4. Conversiones de tipo paso a paso</h3>
+<p><strong>Problema:</strong> leer un entero y un número real, y mostrar el entero como <code>double</code>, el real truncado y redondeado a entero, y el real como texto con su longitud.</p>
+<p><strong>Idea:</strong> <code>int → double</code> es automático; <code>double → int</code> necesita casting (y <code>Math.round</code> si queremos redondear); <code>double → String</code> con <code>String.valueOf</code>. Para que el programa acepte el punto decimal en cualquier ordenador usamos <code>useLocale(Locale.US)</code>.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Locale</span><span class="op">;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Scanner</span><span class="op">;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Conversiones <span class="op">{</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Scanner</span> teclado <span class="op">=</span> <span class="kw">new</span> <span class="bu">Scanner</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">in</span><span class="op">).</span><span class="fu">useLocale</span><span class="op">(</span><span class="bu">Locale</span><span class="op">.</span><span class="fu">US</span><span class="op">);</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Entero: &quot;</span><span class="op">);</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> entero <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextInt</span><span class="op">();</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Real: &quot;</span><span class="op">);</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> real <span class="op">=</span> teclado<span class="op">.</span><span class="fu">nextDouble</span><span class="op">();</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> enteroComoReal <span class="op">=</span> entero<span class="op">;</span>                 <span class="co">// automática</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> realTruncado <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span> real<span class="op">;</span>                  <span class="co">// casting: trunca</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> realRedondeado <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span><span class="op">(</span>real<span class="op">);</span>    <span class="co">// redondea y luego casting</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">String</span> realTexto <span class="op">=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">valueOf</span><span class="op">(</span>real<span class="op">);</span>        <span class="co">// double -&gt; String</span></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Entero como double: &quot;</span> <span class="op">+</span> enteroComoReal<span class="op">);</span></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Real truncado: &quot;</span> <span class="op">+</span> realTruncado<span class="op">);</span></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Real redondeado: &quot;</span> <span class="op">+</span> realRedondeado<span class="op">);</span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Real como texto: \&quot;&quot;</span> <span class="op">+</span> realTexto <span class="op">+</span> <span class="st">&quot;\&quot; (&quot;</span> <span class="op">+</span> realTexto<span class="op">.</span><span class="fu">length</span><span class="op">()</span> <span class="op">+</span> <span class="st">&quot; caracteres)&quot;</span><span class="op">);</span></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Media sin casting: &quot;</span> <span class="op">+</span> <span class="op">(</span>entero <span class="op">+</span> realTruncado<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Media con casting: &quot;</span> <span class="op">+</span> <span class="op">(</span>entero <span class="op">+</span> realTruncado<span class="op">)</span> <span class="op">/</span> <span class="fl">2.0</span><span class="op">);</span></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Prueba:</strong> con 9 y 2.75:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode"><code class="sourceCode"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>Entero como double: 9.0</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>Real truncado: 2</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>Real redondeado: 3</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>Real como texto: &quot;2.75&quot; (4 caracteres)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>Media sin casting: 5</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>Media con casting: 5.5</span></code></pre></div>
+<p>Las dos últimas líneas recuerdan por qué importa el tipo: (9 + 2) / 2 con enteros da 5, y dividir entre <code>2.0</code> da 5.5.</p>
+</section>
+<section id="media-de-tres-notas" class="level3">
+<h3>13.5. Media de tres notas</h3>
+<p><strong>Problema:</strong> calcular la media de tres notas enteras con decimales.</p>
+<p><strong>Idea:</strong> sumar y dividir entre 3, pero cuidado con la división entera.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Media <span class="op">{</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> n1 <span class="op">=</span> <span class="dv">7</span><span class="op">,</span> n2 <span class="op">=</span> <span class="dv">8</span><span class="op">,</span> n3 <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> mal <span class="op">=</span> <span class="op">(</span>n1 <span class="op">+</span> n2 <span class="op">+</span> n3<span class="op">)</span> <span class="op">/</span> <span class="dv">3</span><span class="op">;</span>        <span class="co">// 23 / 3 con enteros</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> bien <span class="op">=</span> <span class="op">(</span>n1 <span class="op">+</span> n2 <span class="op">+</span> n3<span class="op">)</span> <span class="op">/</span> <span class="fl">3.0</span><span class="op">;</span>     <span class="co">// 23 / 3.0</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>mal<span class="op">);</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>bien<span class="op">);</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">printf</span><span class="op">(</span><span class="st">&quot;%.2f%n&quot;</span><span class="op">,</span> bien<span class="op">);</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Prueba</strong> (equipo en español):</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode"><code class="sourceCode"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>7.0</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>7.666666666666667</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>7,67</span></code></pre></div>
+<p>La primera versión pierde los decimales aunque el resultado se guarde en un <code>double</code>: la división ya se había hecho con enteros. La segunda divide entre <code>3.0</code>, y <code>%.2f</code> redondea solo al <em>mostrar</em>.</p>
+</section>
 </section>
 <section id="banco-de-ejercicios" class="level2">
 <h2>14. Banco de ejercicios</h2>
 <p>Los ejercicios de esta unidad están en la web de la UP2, con pistas en la plantilla, validación por criterios y justificante:</p>
 <ul>
-<li><strong>Práctica 1 · Sentencias simples (11):</strong> nombre y edad, suma, cinco operaciones, área del rectángulo, círculo, intercambio, informe de ventas, IVA fijo, IVA variable, euros a pesetas y las dos piscinas.</li>
+<li><strong>Práctica 1 · Sentencias simples (12):</strong> nombre y edad, suma, cinco operaciones, área del rectángulo, círculo, intercambio, informe de ventas, IVA fijo, IVA variable, euros a pesetas, las dos piscinas y un ejercicio de conversiones de tipo (<em>casting</em>: <code>int → double</code>, <code>double → int</code> y <code>double → String</code>; repasa los apartados 8.1 a 8.4).</li>
 <li><strong>Ampliación (12 retos):</strong> ticket con propina, segundos a h/min/s, cajero, notas ponderadas, temperaturas, cifras de un número, viaje, carrera, rotación de tres variables, factura de la luz y distancia entre puntos, entre otros.</li>
 </ul>
 <div class="callout ok"><strong class="t">Método de trabajo</strong>
@@ -1226,6 +1653,30 @@
 <tr class="odd">
 <td>Truncar un decimal</td>
 <td><code>(int) x</code></td>
+</tr>
+<tr class="odd">
+<td>Pasar un <code>int</code> a <code>double</code></td>
+<td><code>double d = n;</code> (automático)</td>
+</tr>
+<tr class="even">
+<td>Número a texto</td>
+<td><code>String.valueOf(x)</code> o <code>"" + x</code></td>
+</tr>
+<tr class="odd">
+<td>Texto con 2 decimales como <code>String</code></td>
+<td><code>String.format("%.2f", x)</code></td>
+</tr>
+<tr class="even">
+<td>Redondear un decimal a entero</td>
+<td><code>(int) Math.round(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Número de caracteres de un texto</td>
+<td><code>texto.length()</code></td>
+</tr>
+<tr class="even">
+<td>Carácter dígito a número</td>
+<td><code>c - '0'</code></td>
 </tr>
 </tbody>
 </table></div>
