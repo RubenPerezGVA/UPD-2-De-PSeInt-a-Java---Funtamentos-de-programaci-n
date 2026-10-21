@@ -2,13 +2,15 @@
 
 **Autor:** Rubén Pérez Ibáñez · IES Álvaro Falomir · Curso 2026/27.
 
+**UP2 · Fundamentos de Java: IntelliJ, estructura, variables, tipos, constantes, operadores, conversiones y E/S.** Evaluación: prácticas Apto / No apto (10 %) y examen de la 1.ª evaluación (90 %); el justificante de las webs no es una calificación.
+
 | Evaluación | Horas | RA | Fechas previstas |
 |---|---|---|---|
 | 1.ª | 24 h | RA1, RA2, RA5 | 25/09 – 16/10 |
 
 **Contenidos:** del pseudocódigo a Java, IntelliJ IDEA, estructura de un programa, variables, tipos primitivos, literales y constantes, operadores, conversiones de tipo, entrada con `Scanner`, salida con formato y métodos estáticos de `Math`.
 
-Web estática basada en la dinámica del proyecto `pseint-1daw`, adaptada a Java y a los **11 ejercicios** de «Introducción a Java. Sentencias simples» (10 ejercicios y uno de ampliación), más un ejercicio 12 básico de conversiones de tipo (*casting*: int → double, double → int y double → String). Incluye la teoría PDF de «Elementos básicos del lenguaje» como material complementario.
+Web estática basada en la dinámica del proyecto `pseint-1daw`, adaptada a Java y a los **12 ejercicios** de la práctica P2.1 (los 11 de «Introducción a Java. Sentencias simples», 10 ejercicios y uno de ampliación, más un ejercicio 12 básico de conversiones de tipo (*casting*: int → double, double → int y double → String)). Incluye la teoría PDF de «Elementos básicos del lenguaje» como material complementario.
 
 ## Utilización y publicación
 
@@ -46,9 +48,9 @@ node tests/validator.test.js
 
 Se comprueban 13 soluciones con identificadores libres (dos del ejercicio de casting), un caso de validación parcial, ignorar comentarios/literales que contienen pseudocódigo aparente y detectar la ausencia de intercambio real en el ejercicio 6.
 
-## Ampliación (`ampliacion.html`)
+## Práctica P2.2 · Ampliación de sentencias simples (`ampliacion.html`)
 
-Segunda página con **12 retos nuevos** del mismo nivel (solo sentencias simples, sin `if` ni bucles) y la misma dinámica: pistas, validación parcial por criterios, justificante y exportación. Temas: división entera y resto (tiempo, cajero, cifras, pizzas), fórmulas (nota ponderada, temperaturas), aplicaciones (viaje, carrera), rotación de tres variables, constantes con `final` y la clase `Math` (factura de la luz y distancia entre dos puntos).
+Segunda práctica evaluable (Apto / No apto) con **12 retos nuevos** del mismo nivel (solo sentencias simples, sin `if` ni bucles) y la misma dinámica: pistas, validación parcial por criterios, justificante y exportación. Temas: división entera y resto (tiempo, cajero, cifras, pizzas), fórmulas (nota ponderada, temperaturas), aplicaciones (viaje, carrera), rotación de tres variables, constantes con `final` y la clase `Math` (factura de la luz y distancia entre dos puntos).
 
 - `validator-ampliacion.js`: enunciados y criterios; reutiliza el analizador de `validator.js` (se carga antes).
 - `app.js` lee la configuración de cada página (clave de almacenamiento, título de la actividad y nombres de archivo), así que el progreso de ambas prácticas se guarda por separado.
@@ -63,7 +65,7 @@ Segunda página con **12 retos nuevos** del mismo nivel (solo sentencias simples
 
 ## Refuerzo y ampliación (actividades opcionales)
 
-Cuatro actividades **opcionales e independientes**, con la misma dinámica que las prácticas (pistas en la plantilla, autovalidación por criterios, justificante y exportación) y su propio progreso guardado en el navegador. La portada es `refuerzo-ampliacion.html`, enlazada de forma discreta desde el pie de `index.html` y `ampliacion.html`. Cada página muestra los RA que trabaja y el aviso «Actividad opcional».
+Cuatro actividades **opcionales, sin nota e independientes** (no modifican el 10 % de prácticas), con la misma dinámica que las prácticas (pistas en la plantilla, autovalidación por criterios, justificante y exportación) y su propio progreso guardado en el navegador. La portada es `refuerzo-ampliacion.html`, enlazada de forma discreta desde el pie de `index.html` y `ampliacion.html`. Cada página muestra los RA que trabaja y el aviso «Actividad opcional».
 
 | Código | Página | Validador | Prueba | Ejercicios | RA (CE) |
 |---|---|---|---|---|---|
